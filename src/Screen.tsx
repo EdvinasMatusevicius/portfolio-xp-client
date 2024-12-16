@@ -9,7 +9,6 @@ export function Screen() {
     display: 'grid',
     gridTemplateRows: '1fr 3rem'
   }}>
-    {/* <Desktop /> */}
     <Desktop />
     <Taskbar />
   </div>

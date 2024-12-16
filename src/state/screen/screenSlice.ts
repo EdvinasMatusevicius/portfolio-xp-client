@@ -5,7 +5,7 @@ interface ScreenState {
 }
 
 const initialScreenState: ScreenState = {
-  windowsLayeringOrder: []
+  windowsLayeringOrder: ['test1','test2','test3']
 }
 
 const screenSlice = createSlice({
