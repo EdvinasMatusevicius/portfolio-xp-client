@@ -83,10 +83,11 @@ export function Desktop() {
         key={index}
       />
     })}
-    {openWindows.map((windowName, index) => {
-      return <DesktopWindow 
-        windowName={windowName}
-        key={index}
+    {openWindows.map((windowData, index) => {
+      return <DesktopWindow
+        windowName={windowData.name}
+        key={windowData.id}
+        zIndexVal={index}
       />
     })}
   </div>

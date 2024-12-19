@@ -1,3 +1,5 @@
+
+
 export function Taskbar() {
-  return <div style={{backgroundColor: 'blue'}}>TASKBAR THIS IS</div>
+  return <div>TASKBAR THIS IS</div>
 }
