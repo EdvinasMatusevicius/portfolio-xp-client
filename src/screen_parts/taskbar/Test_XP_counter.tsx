@@ -18,7 +18,7 @@ export function TestXPCounter({name}){
       </div>
 
       <div className="window-body">
-        <p style={{ textAlign: "center" }}>Current count: {count}</p>
+        <p className="window" style={{ textAlign: "center" }}>Current count: {count}</p>
         <div className="field-row" style={{ justifyContent: "center" }}>
           <button onClick={() => setCount(count + 1)}>+</button>
           <button onClick={() => setCount(count - 1)}>-</button>

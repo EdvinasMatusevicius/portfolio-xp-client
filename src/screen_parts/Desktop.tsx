@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { DesktopShortcut } from "./Desktop_shortcut";
-import { DesktopWindow } from "./Desktop_window";
+import { DesktopShortcut } from "./desktop/Desktop_shortcut";
+import { DesktopWindow } from "./desktop/Desktop_window";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../state/store";
 

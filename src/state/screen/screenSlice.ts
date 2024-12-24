@@ -39,12 +39,14 @@ const screenSlice = createSlice({
         state.windowsLayeringOrder.push(...state.windowsLayeringOrder.splice(existingOpenWindowIndex, 1));
     },
     closeWindow: (state, action: PayloadAction<string>) =>{
-
+      const windowToClose = action.payload;
+      const existingOpenWindowIndex = state.windowsLayeringOrder.map((winData: WindowDataObj) => winData.name).indexOf(windowToClose);
+      if (existingOpenWindowIndex === -1) return;
+      state.windowsLayeringOrder.splice(existingOpenWindowIndex, 1)
     },
     bringExistingToFront: (state, action: PayloadAction<string>)=>{
       const windowToFront = action.payload;
       const existingOpenWindowIndex = state.windowsLayeringOrder.map((winData: WindowDataObj) => winData.name).indexOf(windowToFront);
-      console.log({windowToFront, existingOpenWindowIndex, windowList: state.windowsLayeringOrder});
       if (existingOpenWindowIndex !== -1)
         state.windowsLayeringOrder.push(...state.windowsLayeringOrder.splice(existingOpenWindowIndex, 1));
 

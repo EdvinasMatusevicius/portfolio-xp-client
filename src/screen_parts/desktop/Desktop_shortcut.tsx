@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../state/store";
-import { openWindow } from "../state/screen/screenSlice";
+import { AppDispatch, RootState } from "../../state/store";
+import { openWindow } from "../../state/screen/screenSlice";
 
 interface DesktopShortcutProps{
   allowDrop: (e: React.DragEvent<HTMLDivElement>) => void;

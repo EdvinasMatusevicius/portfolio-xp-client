@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { TestXPCounter } from './Test_XP_counter';
-import { bringExistingToFront } from '../state/screen/screenSlice';
-import { AppDispatch, RootState } from "../state/store";
+import { TestXPCounter } from '../taskbar/Test_XP_counter';
+import { bringExistingToFront, closeWindow } from '../../state/screen/screenSlice';
+import { AppDispatch, RootState } from "../../state/store";
+import "xp.css/dist/XP.css";
+
 
 interface DesktopWindowProps {
   windowName: string,
@@ -36,29 +38,32 @@ export function DesktopWindow({windowName, zIndexVal}: DesktopWindowProps): JSX.
       document.removeEventListener('mouseup', handleMouseUp);
     }
   };
+  function handleCloseWindow(event: React.MouseEvent<HTMLButtonElement>){
+    if (event.button !== 0) return;
+    dispatch(closeWindow(windowName));
+  }
 
   return <div
     ref={windowNode} 
+    className="window"
     style={{
-      backgroundColor: windowName,
       position: 'absolute',
       width: '300px',
       height: '300px',
       top: `${windowPosition.y}px`,
       left: `${windowPosition.x}px`,
-      zIndex: zIndexVal + 1
+      zIndex: zIndexVal + 1,
+      backgroundColor: windowName
     }}
     onMouseDown={handleMouseDown}
   >
-        <div
-      style={{
-        height: "100%",
-        width: "100%"
-      }}
-    > {`z-index: ${zIndexVal+1}, name: ${windowName}`}
-      <TestXPCounter 
-        name={windowName}
-      />
-    </div>
+      <div className="title-bar">
+        <div className="title-bar-text">{windowName}</div>
+        <div className="title-bar-controls">
+          <button aria-label="Minimize" />
+          <button aria-label="Maximize" />
+          <button onClick={handleCloseWindow} aria-label="Close" />
+        </div>
+      </div>
   </div>
 }
