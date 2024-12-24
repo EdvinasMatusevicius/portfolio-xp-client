@@ -2,6 +2,8 @@
   width: 100%;
   height: 100%;
   position: relative;
+  display: grid;
+  grid-template-columns: 120px 8fr 1fr;
   background: linear-gradient(
     to bottom,
     #1f2f86 0,
@@ -25,7 +27,7 @@
 .startBtn{
   background-image: url('../../assets/images/start_btn.png');
   height: 100%;
-  width: 110px;
+  width: 100%;
   background-repeat: no-repeat;
   position: relative;
 }
@@ -41,4 +43,77 @@
   background: green;
   position: absolute;
   bottom: 100%;
+}
+.taskbar_buttons_tray{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 150px));
+}
+
+
+
+.taskbar_button {
+  color: #fff;
+  border-radius: 0.2rem;
+  margin-top: 0.2rem;
+  padding: 0 8px;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: #3c81f3;
+  box-shadow: inset -1px 0px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+/* .footer__icon {
+  height: 15px;
+  width: 15px;
+}
+.footer__text {
+  position: absolute;
+  left: 27px;
+  right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+.taskbar_button.unfocused:hover {
+  background-color: #53a3ff;
+  box-shadow: inset -1px 0px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+.taskbar_button.unfocused:before {
+  display: block;
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 10px;
+  height: 1px;
+  border-bottom-right-radius: 50%;
+  box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+}
+.taskbar_button.unfocused:hover:active {
+  background-color: #1e52b7;
+  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
+    inset 1px 0 1px rgba(0, 0, 0, 0.7);
+}
+.taskbar_button.focused:hover {
+  background-color: #3576f3;
+}
+.taskbar_button.focused:hover:active {
+  background-color: #1e52b7;
+}
+.taskbar_button.focused {
+  background-color: #1e52b7;
+  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.2),
+    inset 1px 0 1px rgba(0, 0, 0, 0.7);
+}
+.footer__time {
+  margin: 0 5px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: lighter;
+  text-shadow: none;
 }
