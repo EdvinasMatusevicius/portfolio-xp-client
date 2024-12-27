@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import {addNewToWindowOrder, moveExistingWindowToFront, removeFromWindowsOrder} from './utilities';
-import { ScreenState, WindowLayeringOrderDataObj } from "../../types";
+import {
+  addNewToWindowOrder,
+  moveExistingWindowToFront,
+  removeFromWindowsOrder,
+  addTaskbarButtonToArr,
+  removeTaskbarBtn
+} from './utilities';
+import { ScreenState } from "../../types";
 
 const initialScreenState: ScreenState = {
   windowsLayeringOrder: [],
@@ -17,19 +23,19 @@ const screenSlice = createSlice({
       state.startMenuIsOpen = false;
       const windowToOpen = action.payload;
       addNewToWindowOrder(state.windowsLayeringOrder, windowToOpen);
+      addTaskbarButtonToArr(state.activeTaskbarButtons, windowToOpen);
     },
     closeWindow: (state, action: PayloadAction<string>) =>{
       state.startMenuIsOpen = false;
       const windowToClose = action.payload;
-      removeFromWindowsOrder(state.windowsLayeringOrder, windowToClose)
+      removeFromWindowsOrder(state.windowsLayeringOrder, windowToClose);
+      removeTaskbarBtn(state.activeTaskbarButtons, windowToClose);
     },
     bringWindowToFront: (state, action: PayloadAction<string>)=>{
       state.startMenuIsOpen = false;
       const windowToFront = action.payload;
       moveExistingWindowToFront(state.windowsLayeringOrder, windowToFront)
     },
-    // taskbar buttons 
-    
     //start menu handling
     toggleStartMenu(state) {
       state.startMenuIsOpen = !state.startMenuIsOpen;

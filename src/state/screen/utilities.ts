@@ -1,4 +1,4 @@
-import {WindowLayeringOrderDataObj, WindowsData} from '../../types/index';
+import {WindowLayeringOrderDataObj, WindowsData, TaskbarButton} from '../../types/index';
 const windowsData: WindowsData = {
   brown: { id:1, name: 'brown' },
   yellow: { id:2, name: 'yellow' },
@@ -28,4 +28,19 @@ export function moveExistingWindowToFront(windowsLayeringOrder: WindowLayeringOr
   const existingOpenWindowIndex = windowsLayeringOrder.map((winData: WindowLayeringOrderDataObj) => winData.name).indexOf(windowToFront);
   if (existingOpenWindowIndex !== -1)
     windowsLayeringOrder.push(...windowsLayeringOrder.splice(existingOpenWindowIndex, 1));
+}
+export function addTaskbarButtonToArr(taskbarButtonsArr: TaskbarButton[], buttonName: string) {
+  const existingTaskbarBTtnIndex = taskbarButtonsArr.map((btnData: TaskbarButton) => btnData.name).indexOf(buttonName);
+  taskbarButtonsArr.forEach(btnData=>btnData.isFocused = false);
+  if (existingTaskbarBTtnIndex !== -1) {
+    taskbarButtonsArr[existingTaskbarBTtnIndex].isFocused = true;
+  } else {
+    taskbarButtonsArr.push({name: buttonName, isFocused: true})
+  }
+}
+export function removeTaskbarBtn(taskbarButtonsArr: TaskbarButton[], buttonName: string) {
+  const existingTaskbarBTtnIndex = taskbarButtonsArr.map((btnData: TaskbarButton) => btnData.name).indexOf(buttonName);
+  if (existingTaskbarBTtnIndex === -1) return;
+  taskbarButtonsArr.splice(existingTaskbarBTtnIndex, 1)
+
 }
