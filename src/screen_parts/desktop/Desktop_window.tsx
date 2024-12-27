@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TestXPCounter } from '../taskbar/Test_XP_counter';
-import { bringExistingToFront, closeWindow } from '../../state/screen/screenSlice';
+import { bringWindowToFront, closeWindow } from '../../state/screen/screenSlice';
 import { AppDispatch, RootState } from "../../state/store";
 import "xp.css/dist/XP.css";
 
@@ -23,7 +23,7 @@ export function DesktopWindow({windowName, zIndexVal}: DesktopWindowProps): JSX.
     if (!rect) return;
     const offsetX = event.clientX - rect.left;
     const offsetY = event.clientY - rect.top;
-    dispatch(bringExistingToFront(windowName));
+    dispatch(bringWindowToFront(windowName));
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
 
