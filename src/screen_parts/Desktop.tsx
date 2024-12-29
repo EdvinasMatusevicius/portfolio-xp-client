@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { DesktopShortcut } from "./desktop/Desktop_shortcut";
 import { DesktopWindow } from "./desktop/Desktop_window";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../state/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 export function Desktop() {
   const backgroundSquarePx = 100;
@@ -10,7 +10,6 @@ export function Desktop() {
   const [shortcuts, setShortcuts] = useState<(string | null)[]>(['brown', 'yellow', 'red', 'grey', 'black']);
   const [draggedItemId, setDraggedItemId] = useState<number>(0);
   const openWindows = useSelector((state: RootState) => state.screen.windowsLayeringOrder)
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const result = calculateGridTracks();
@@ -34,7 +33,6 @@ export function Desktop() {
     if (!draggedElId) return; 
     const dropTargetIndex = Number(draggedElId);
     if (shortcuts[dropTargetIndex]) return; // some other item already at this index
-    console.log(dropTargetIndex)
     moveShortcutToSquare(dropTargetIndex)
   }
 
@@ -87,6 +85,7 @@ export function Desktop() {
       return <DesktopWindow
         windowName={windowData.name}
         key={windowData.id}
+        isMinimized={windowData.isMinimized}
         zIndexVal={index}
       />
     })}

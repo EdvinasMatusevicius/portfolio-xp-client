@@ -1,23 +1,23 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { TestXPCounter } from '../taskbar/Test_XP_counter';
-import { bringWindowToFront, closeWindow } from '../../state/screen/screenSlice';
-import { AppDispatch, RootState } from "../../state/store";
+import { bringWindowToFront, closeWindow, minimizeWindow } from '../../state/screen/screenSlice';
+import { AppDispatch } from "../../state/store";
 import "xp.css/dist/XP.css";
 
 
 interface DesktopWindowProps {
   windowName: string,
-  zIndexVal: number
+  zIndexVal: number,
+  isMinimized?: boolean
 }
 
 
-export function DesktopWindow({windowName, zIndexVal}: DesktopWindowProps): JSX.Element {
-  const [windowPosition, setWindowPosition] = useState({ x: 200, y: 400 });
+export function DesktopWindow({windowName, zIndexVal, isMinimized}: DesktopWindowProps): JSX.Element {
+  const [windowPosition, setWindowPosition] = useState({ x: 200 + (Math.random()*100), y: 400 + (Math.random()*100)});
   const dispatch = useDispatch<AppDispatch>()
   const windowNode = useRef(null);
 
-  const handleMouseDown = (event: React.MouseEvent) => {
+  const handleDragStart = (event: React.MouseEvent) => {
     if (!windowNode.current) return;
     const rect = (windowNode.current as Element)?.getBoundingClientRect(); 
     if (!rect) return;
@@ -41,6 +41,12 @@ export function DesktopWindow({windowName, zIndexVal}: DesktopWindowProps): JSX.
   function handleCloseWindow(event: React.MouseEvent<HTMLButtonElement>){
     if (event.button !== 0) return;
     dispatch(closeWindow(windowName));
+    event.stopPropagation();
+  }
+  function handleMinimizeWindow(event: React.MouseEvent<HTMLButtonElement>){
+    if (event.button !== 0) return;
+    dispatch(minimizeWindow(windowName));
+    event.stopPropagation();
   }
 
   return <div
@@ -53,16 +59,17 @@ export function DesktopWindow({windowName, zIndexVal}: DesktopWindowProps): JSX.
       top: `${windowPosition.y}px`,
       left: `${windowPosition.x}px`,
       zIndex: zIndexVal + 1,
-      backgroundColor: windowName
+      backgroundColor: windowName,
+      ...(isMinimized ? {display: 'none'} : {})
     }}
-    onMouseDown={handleMouseDown}
+    onMouseDown={handleDragStart}
   >
       <div className="title-bar">
         <div className="title-bar-text">{windowName}</div>
         <div className="title-bar-controls">
-          <button aria-label="Minimize" />
+          <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
           <button aria-label="Maximize" />
-          <button onClick={handleCloseWindow} aria-label="Close" />
+          <button onMouseDown={handleCloseWindow} aria-label="Close" />
         </div>
       </div>
   </div>

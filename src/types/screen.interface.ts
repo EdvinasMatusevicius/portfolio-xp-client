@@ -1,6 +1,7 @@
 export interface WindowLayeringOrderDataObj {
   id: number,
-  name: string
+  name: string,
+  isMinimized?: boolean
 }
 export interface WindowsData {
   [key: string]: WindowLayeringOrderDataObj

@@ -4,7 +4,11 @@ import {
   moveExistingWindowToFront,
   removeFromWindowsOrder,
   addTaskbarButtonToArr,
-  removeTaskbarBtn
+  removeTaskbarBtn,
+  setTaskbarBtnAsFocused,
+  setWindowAsMinimized,
+  restoreMinimizedWindow,
+  setTaskbarBtnAsNotFocused
 } from './utilities';
 import { ScreenState } from "../../types";
 
@@ -34,7 +38,15 @@ const screenSlice = createSlice({
     bringWindowToFront: (state, action: PayloadAction<string>)=>{
       state.startMenuIsOpen = false;
       const windowToFront = action.payload;
-      moveExistingWindowToFront(state.windowsLayeringOrder, windowToFront)
+      restoreMinimizedWindow(state.windowsLayeringOrder, windowToFront);
+      moveExistingWindowToFront(state.windowsLayeringOrder, windowToFront);
+      setTaskbarBtnAsFocused(state.activeTaskbarButtons, windowToFront);
+    },
+    minimizeWindow: (state, action: PayloadAction<string>)=>{
+      state.startMenuIsOpen = false;
+      const windowToMinimize = action.payload;
+      setWindowAsMinimized(state.windowsLayeringOrder, windowToMinimize);
+      setTaskbarBtnAsNotFocused(state.activeTaskbarButtons, windowToMinimize);
     },
     //start menu handling
     toggleStartMenu(state) {
@@ -47,7 +59,8 @@ export const {
   openWindow, 
   bringWindowToFront, 
   closeWindow,
-  toggleStartMenu
+  toggleStartMenu,
+  minimizeWindow
 } = screenSlice.actions;
 
 export default screenSlice.reducer;
