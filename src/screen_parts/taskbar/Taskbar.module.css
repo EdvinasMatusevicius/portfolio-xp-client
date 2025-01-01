@@ -42,6 +42,7 @@
   height: 400px;
   background: green;
   position: absolute;
+  z-index: 999;
   bottom: 100%;
 }
 .taskbar_buttons_tray{

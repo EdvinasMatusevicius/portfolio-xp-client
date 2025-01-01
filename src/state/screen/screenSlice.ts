@@ -51,6 +51,9 @@ const screenSlice = createSlice({
     //start menu handling
     toggleStartMenu(state) {
       state.startMenuIsOpen = !state.startMenuIsOpen;
+    },
+    setStartMenuState(state, action: PayloadAction<boolean>) {
+      state.startMenuIsOpen = action.payload;
     }
   }
 });
@@ -59,8 +62,9 @@ export const {
   openWindow, 
   bringWindowToFront, 
   closeWindow,
+  minimizeWindow,
   toggleStartMenu,
-  minimizeWindow
+  setStartMenuState
 } = screenSlice.actions;
 
 export default screenSlice.reducer;
