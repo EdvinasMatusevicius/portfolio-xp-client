@@ -16,8 +16,11 @@ export function addNewToWindowOrder(windowsLayeringOrder: WindowLayeringOrderDat
     }
     windowsLayeringOrder.push(windowData);
   }
-  if (existingOpenWindowIndex !== -1)
-    windowsLayeringOrder.push(...windowsLayeringOrder.splice(existingOpenWindowIndex, 1));
+  if (existingOpenWindowIndex !== -1) {
+    const windowData = (windowsLayeringOrder.splice(existingOpenWindowIndex, 1))[0];
+    if (windowData.isMinimized) windowData.isMinimized = false;
+    windowsLayeringOrder.push(windowData);
+  }
 }
 export function removeFromWindowsOrder(windowsLayeringOrder: WindowLayeringOrderDataObj[], windowToClose: string) {
   const existingOpenWindowIndex = windowsLayeringOrder.map((winData: WindowLayeringOrderDataObj) => winData.name).indexOf(windowToClose);

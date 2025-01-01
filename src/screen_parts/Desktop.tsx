@@ -3,18 +3,21 @@ import { DesktopShortcut } from "./desktop/Desktop_shortcut";
 import { DesktopWindow } from "./desktop/Desktop_window";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
+import { DesktopDimensionsData } from '../types/index';
 
 export function Desktop() {
   const backgroundSquarePx = 100;
-
   const [shortcuts, setShortcuts] = useState<(string | null)[]>(['brown', 'yellow', 'red', 'grey', 'black']);
   const [draggedItemId, setDraggedItemId] = useState<number>(0);
+  const [desktopDimensions, setDesktopDimensions] = useState<DesktopDimensionsData>({width: 0, height: 0});
   const openWindows = useSelector((state: RootState) => state.screen.windowsLayeringOrder)
 
   useEffect(() => {
-    const result = calculateGridTracks();
+    const desktopDimensions = getDesktopDimensions();
+    const result = calculateGridTracks(desktopDimensions);
     const totalAvailableSquares = result.columns * result.rows;
     const extendedArray = [...shortcuts, ...Array(totalAvailableSquares - shortcuts.length).fill(null)];
+    setDesktopDimensions(desktopDimensions);
     setShortcuts(extendedArray);
   }, []);
 
@@ -44,18 +47,19 @@ export function Desktop() {
     setShortcuts(newShortcutArr);
   }
 
-  function calculateGridTracks() {
+  function getDesktopDimensions(): DesktopDimensionsData {
     const container = document.querySelector('#desktop-grid-container');
     if (!container) {
       console.warn('Container element with ID "desktop-grid-container" not found.');
-      return { columns: 0, rows: 0 };
+      return {width: 0, height: 0}
     }
-    const containerWidth = container.clientWidth;
-    const containerHeight = container.clientHeight;
+    return {width: container.clientWidth, height: container.clientHeight};
+  }
 
-    const columns = Math.floor(containerWidth / backgroundSquarePx);
-    const rows = Math.floor(containerHeight / backgroundSquarePx);
-
+  function calculateGridTracks(dimensions: DesktopDimensionsData) {
+    if (!dimensions.height || !dimensions.width) return { columns: 0, rows: 0 }
+    const columns = Math.floor(dimensions.width / backgroundSquarePx);
+    const rows = Math.floor(dimensions.height / backgroundSquarePx);
     return { columns, rows };
   }
 
@@ -87,6 +91,7 @@ export function Desktop() {
         key={windowData.id}
         isMinimized={windowData.isMinimized}
         zIndexVal={index}
+        desktopDimensions={desktopDimensions}
       />
     })}
   </div>

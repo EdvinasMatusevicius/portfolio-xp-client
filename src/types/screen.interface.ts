@@ -1,3 +1,6 @@
+export interface DesktopDimensionsData {
+  width: number, height: number
+}
 export interface WindowLayeringOrderDataObj {
   id: number,
   name: string,

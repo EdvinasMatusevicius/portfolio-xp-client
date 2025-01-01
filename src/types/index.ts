@@ -2,5 +2,6 @@ export type {
   WindowLayeringOrderDataObj,
   WindowsData,
   ScreenState,
-  TaskbarButton
+  TaskbarButton,
+  DesktopDimensionsData
 } from './screen.interface'
