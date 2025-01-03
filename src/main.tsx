@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { Screen } from './Screen.tsx'
 import { Provider } from 'react-redux'
 import { store } from "./state/store.ts"
+import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

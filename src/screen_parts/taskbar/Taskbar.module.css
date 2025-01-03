@@ -38,12 +38,104 @@
     background: linear-gradient(to right, rgba(255, 255, 255, 0.06) 90%,rgba(255, 255, 255, 0))
 }
 .startMenu{
-  width: 400px;
-  height: 400px;
-  background: green;
-  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #4282d6;
+  color: white;
   z-index: 999;
-  bottom: 100%;
+  box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.startMenu::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    rgb(255, 255, 255, 0.3) 1%,
+    rgb(255, 255, 255, 0.5) 2%,
+    rgb(255, 255, 255, 0.5) 95%,
+    rgb(255, 255, 255, 0.3) 98%,
+    rgb(255, 255, 255, 0.2) 99%,
+    transparent 100%
+  );
+  box-shadow: inset 0 -1px 1px #0e60cb;
+}
+.startMenuTop{
+  width: 100%;
+  padding: 0.5rem 0 0.5rem 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background: linear-gradient(
+      to bottom,
+      #1868ce 0%,
+      #0e60cb 12%,
+      #0e60cb 20%,
+      #1164cf 32%,
+      #1667cf 33%,
+      #1b6cd3 47%,
+      #1e70d9 54%,
+      #2476dc 60%,
+      #297ae0 65%,
+      #3482e3 77%,
+      #3786e5 79%,
+      #428ee9 90%,
+      #4791eb 100%
+    );
+}
+.startMenuTopImg {
+  width: 42px;
+  height: 42px;
+  margin: 0 0.5rem;
+  border-radius: 3px;
+  border: 2px solid rgb(222, 222, 222, 0.8);
+}
+.startMenuTopText {
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+}
+.startMenuMiddle{
+  height: 100%;
+  width: 100%;
+  background: white;
+}
+.startMenuBottom{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background: linear-gradient(
+    to bottom,
+    #4282d6 0%,
+    #3b85e0 3%,
+    #418ae3 5%,
+    #418ae3 17%,
+    #3c87e2 21%,
+    #3786e4 26%,
+    #3482e3 29%,
+    #2e7ee1 39%,
+    #2374df 49%,
+    #2072db 57%,
+    #196edb 62%,
+    #176bd8 72%,
+    #1468d5 75%,
+    #1165d2 83%,
+    #0f61cb 88%
+  );
 }
 .taskbar_buttons_tray{
   width: 100%;

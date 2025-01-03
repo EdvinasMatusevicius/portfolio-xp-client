@@ -3,6 +3,10 @@ import styles from './Taskbar.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
 import { setStartMenuState, toggleStartMenu } from "../../state/screen/screenSlice";
+import userImg from '../../assets/images/icons/user.png';
+import logOff from '../../assets/images/icons/logOff.png';
+import turnOff from '../../assets/images/icons/turnOff.png';
+
 export function TaskbarMenu(){
   const menuRef = useRef(null);
   const dispatch = useDispatch<AppDispatch>();
@@ -29,9 +33,32 @@ export function TaskbarMenu(){
       onClick={onClickStartBtn}
     ></div>
     {startMenuIsOpen ? 
-      <div
-        className={styles.startMenu}
-      >start menu</div> 
+      // wrapper because border radius bugged with pos absolute
+      <div style={{
+        position: 'absolute',
+        width: '400px',
+        height: '400px',
+        bottom: '100%'
+      }}>
+        {/* make grid here */}
+        <div className={styles.startMenu}> 
+          <div  className={styles.startMenuTop}>
+            <img className={styles.startMenuTopImg} src={userImg} alt="avatar" />
+            <span className={styles.startMenuTopText}>User</span>
+          </div>
+          <div className={styles.startMenuMiddle}></div>
+          <div className={styles.startMenuBottom}>
+            <div className='flex items-center justify-center m-2 font-xp'>
+              <img src={logOff} alt="logOff" />
+              <span className='mx-1'>Log Off</span>
+            </div>
+            <div className='flex items-center justify-center font-xp'>
+              <img src={turnOff} alt="logOff" />
+              <span className='mx-1'>Turn Off Computer</span>
+            </div>
+          </div>
+        </div>
+      </div>
       : null
     } 
   </div>
