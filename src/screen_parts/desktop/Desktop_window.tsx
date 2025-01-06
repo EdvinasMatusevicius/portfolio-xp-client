@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { bringWindowToFront, closeWindow, minimizeWindow } from '../../state/screen/screenSlice';
 import { AppDispatch } from "../../state/store";
 import { DesktopDimensionsData } from "../../types/index";
+import { WindowHeader } from "./Window_header";
 import "xp.css/dist/XP.css";
 
 
@@ -84,7 +85,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       top: `${windowPosition.y}px`,
       left: `${windowPosition.x}px`,
       zIndex: zIndexVal + 1,
-      backgroundColor: windowName,
+      backgroundColor: "#edead7",
       ...(isMinimized ? {display: 'none'} : {})
     }}
     onMouseDown={handleDragStart}
@@ -97,5 +98,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
           <button onMouseDown={handleCloseWindow} aria-label="Close" />
         </div>
       </div>
+      <WindowHeader />
+      <h2>TEST CONTENT</h2>
   </div>
 }

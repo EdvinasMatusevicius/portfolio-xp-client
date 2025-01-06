@@ -7,7 +7,7 @@ import { DesktopDimensionsData } from '../types/index';
 
 export function Desktop() {
   const backgroundSquarePx = 100;
-  const [shortcuts, setShortcuts] = useState<(string | null)[]>(['brown', 'yellow', 'red', 'grey', 'black']);
+  const [shortcuts, setShortcuts] = useState<(string | null)[]>(['myComputer']);
   const [draggedItemId, setDraggedItemId] = useState<number>(0);
   const [desktopDimensions, setDesktopDimensions] = useState<DesktopDimensionsData>({width: 0, height: 0});
   const openWindows = useSelector((state: RootState) => state.screen.windowsLayeringOrder)
