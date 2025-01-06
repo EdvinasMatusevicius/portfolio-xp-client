@@ -51,6 +51,7 @@ export function WindowHeader() {
 
 
 const Container = styled.div`
+  user-select: none;
   width: 100%;
   padding: 0 0.2rem;
   .header_toolbar {

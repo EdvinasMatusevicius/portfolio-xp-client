@@ -1,11 +1,20 @@
 import styles from './taskbar/Taskbar.module.css';
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../state/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 import { TaskbarBtn } from "./taskbar/TaskbarBtn";
 import { TaskbarMenu } from "./taskbar/TaskbarMenu";
+import { useEffect, useState } from 'react';
+
+import soundImg from '../assets/images/icons/soundSmall.png'
+import riskImg from '../assets/images/icons/riskSmall.png'
 
 export function Taskbar() {
   const taskbarBtnsArr = useSelector((state: RootState) => state.screen.activeTaskbarButtons);
+  const [time, setTime] = useState<Date>((new Date()));
+  useEffect(()=>{
+    const timeCheckInterval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timeCheckInterval);
+  });
   return  <div className={styles.startBg}>
             {/* start btn with menu */}
             <TaskbarMenu />
@@ -18,6 +27,13 @@ export function Taskbar() {
                   key={index}
                 />
               })}
+            </div>
+            <div className={styles.taskbar_right}>
+              <img className="footer__icon" src={soundImg} alt="" />
+              <img className="footer__icon" src={riskImg} alt="" />
+              <div className={styles.taskbar_time}>
+                {time.toLocaleTimeString('lt', { hour: '2-digit', minute: '2-digit' })}
+              </div>
             </div>
           </div>
 }
