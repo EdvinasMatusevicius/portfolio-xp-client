@@ -2,12 +2,14 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { bringWindowToFront, closeWindow, minimizeWindow } from '../../state/screen/screenSlice';
 import { AppDispatch } from "../../state/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 import { DesktopDimensionsData } from "../../types/index";
 import { WindowHeader } from "./Window_header";
 import { WindowContent } from "./Window_content";
 import "xp.css/dist/XP.css";
 
-import video from '../../assets/videos/darboBaze.mp4'
+// import video from '../../assets/videos/darboBaze.mp4'
 
 
 interface DesktopWindowProps {
@@ -32,6 +34,8 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     x: 300 + (Math.random()*100),
     y: 200 + (Math.random()*50)
   });
+  const windowsData = useSelector((state: RootState) => state.screen.windowsData);
+  
 
   const handleDragStart = (event: React.MouseEvent) => {
     if (!windowNode.current || windowIsMaximized) return;
@@ -89,12 +93,14 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       left: `${windowPosition.x}px`,
       zIndex: zIndexVal + 1,
       backgroundColor: "#edead7",
+      display: "grid",
+      gridAutoRows: 'auto auto 1fr',
       ...(isMinimized ? {display: 'none'} : {})
     }}
     onMouseDown={handleDragStart}
   >
       <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar">
-        <div className="title-bar-text">{windowName}</div>
+        <div className="title-bar-text">{windowsData[windowName].text}</div>
         <div className="title-bar-controls">
           <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
           <button onMouseDown={toggleMaximizeWindow} aria-label={`${windowIsMaximized ? 'Restore' : 'Maximize'}`} />
@@ -102,7 +108,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
         </div>
       </div>
       <WindowHeader />
-      <WindowContent />
+      <WindowContent  windowName={windowName}/>
       {/* <h2>TEST CONTENT</h2>
       <video src={video} width="750" height="500" controls></video> */}
   </div>
