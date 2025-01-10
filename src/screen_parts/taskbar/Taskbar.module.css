@@ -156,6 +156,7 @@
   align-items: center;
   justify-content: start;
   background-color: #3c81f3;
+  user-select: none;
   box-shadow: inset -1px 0px rgba(0, 0, 0, 0.3),
     inset 1px 1px 1px rgba(255, 255, 255, 0.2);
 }
