@@ -4,7 +4,10 @@ import { bringWindowToFront, closeWindow, minimizeWindow } from '../../state/scr
 import { AppDispatch } from "../../state/store";
 import { DesktopDimensionsData } from "../../types/index";
 import { WindowHeader } from "./Window_header";
+import { WindowContent } from "./Window_content";
 import "xp.css/dist/XP.css";
+
+import video from '../../assets/videos/darboBaze.mp4'
 
 
 interface DesktopWindowProps {
@@ -31,7 +34,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   });
 
   const handleDragStart = (event: React.MouseEvent) => {
-    if (!windowNode.current) return;
+    if (!windowNode.current || windowIsMaximized) return;
     const rect = (windowNode.current as Element)?.getBoundingClientRect(); 
     if (!rect) return;
     const offsetX = event.clientX - rect.left;
@@ -90,15 +93,17 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     }}
     onMouseDown={handleDragStart}
   >
-      <div style={{ height: '1.6rem' }} className="title-bar">
+      <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar">
         <div className="title-bar-text">{windowName}</div>
         <div className="title-bar-controls">
           <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
-          <button onMouseDown={toggleMaximizeWindow} aria-label="Maximize" />
+          <button onMouseDown={toggleMaximizeWindow} aria-label={`${windowIsMaximized ? 'Restore' : 'Maximize'}`} />
           <button onMouseDown={handleCloseWindow} aria-label="Close" />
         </div>
       </div>
       <WindowHeader />
-      <h2>TEST CONTENT</h2>
+      <WindowContent />
+      {/* <h2>TEST CONTENT</h2>
+      <video src={video} width="750" height="500" controls></video> */}
   </div>
 }

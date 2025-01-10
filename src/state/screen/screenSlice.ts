@@ -10,12 +10,19 @@ import {
   restoreMinimizedWindow,
   setTaskbarBtnAsNotFocused
 } from './utilities';
-import { ScreenState } from "../../types";
+import { ScreenState, WindowsData } from "../../types";
+
+const windowsData: WindowsData = {
+  about: { id:1, name: 'about', text: 'About' },
+  my_documents: { id:2, name: 'my_documents', text: 'My Documents' },
+  recycle_bin: { id:3, name: 'recycle_bin', text: 'Recycle Bin' },
+}
 
 const initialScreenState: ScreenState = {
   windowsLayeringOrder: [],
   startMenuIsOpen: false,
-  activeTaskbarButtons: []
+  activeTaskbarButtons: [],
+  windowsData: windowsData
 }
 
 const screenSlice = createSlice({
@@ -26,7 +33,7 @@ const screenSlice = createSlice({
     openWindow: (state, action: PayloadAction<string>)=>{
       state.startMenuIsOpen = false;
       const windowToOpen = action.payload;
-      addNewToWindowOrder(state.windowsLayeringOrder, windowToOpen);
+      addNewToWindowOrder(state.windowsLayeringOrder, state.windowsData, windowToOpen);
       addTaskbarButtonToArr(state.activeTaskbarButtons, windowToOpen);
     },
     closeWindow: (state, action: PayloadAction<string>) =>{

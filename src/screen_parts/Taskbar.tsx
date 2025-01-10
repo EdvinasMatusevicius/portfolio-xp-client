@@ -6,7 +6,7 @@ import { TaskbarMenu } from "./taskbar/TaskbarMenu";
 import { useEffect, useState } from 'react';
 
 import soundImg from '../assets/images/icons/soundSmall.png'
-import riskImg from '../assets/images/icons/riskSmall.png'
+import greenShield from '../assets/images/icons/green_shield.png'
 
 export function Taskbar() {
   const taskbarBtnsArr = useSelector((state: RootState) => state.screen.activeTaskbarButtons);
@@ -30,7 +30,7 @@ export function Taskbar() {
             </div>
             <div className={styles.taskbar_right}>
               <img className="footer__icon" src={soundImg} alt="" />
-              <img className="footer__icon" src={riskImg} alt="" />
+              <img className="footer__icon" src={greenShield} alt="" />
               <div className={styles.taskbar_time}>
                 {time.toLocaleTimeString('lt', { hour: '2-digit', minute: '2-digit' })}
               </div>

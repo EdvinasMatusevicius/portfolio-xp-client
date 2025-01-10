@@ -1,15 +1,13 @@
 import {WindowLayeringOrderDataObj, WindowsData, TaskbarButton} from '../../types/index';
-const windowsData: WindowsData = {
-  myComputer: { id:1, name: 'myComputer' }
-}
 
-export function addNewToWindowOrder(windowsLayeringOrder: WindowLayeringOrderDataObj[], windowToOpen: string){
+export function addNewToWindowOrder(
+  windowsLayeringOrder: WindowLayeringOrderDataObj[],
+  windowsData: WindowsData,
+  windowToOpen: string
+){
   const existingOpenWindowIndex = windowsLayeringOrder.map((winData: WindowLayeringOrderDataObj) => winData.name).indexOf(windowToOpen);
   if (existingOpenWindowIndex === -1) {
-    const windowData: WindowLayeringOrderDataObj = {
-      id: windowsData[windowToOpen].id,
-      name: windowsData[windowToOpen].name
-    }
+    const windowData: WindowLayeringOrderDataObj = {...windowsData[windowToOpen]};
     windowsLayeringOrder.push(windowData);
   }
   if (existingOpenWindowIndex !== -1) {

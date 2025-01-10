@@ -7,10 +7,11 @@ import { DesktopDimensionsData } from '../types/index';
 
 export function Desktop() {
   const backgroundSquarePx = 100;
-  const [shortcuts, setShortcuts] = useState<(string | null)[]>(['myComputer']);
+  const [shortcuts, setShortcuts] = useState<(string | null)[]>(['about', 'my_documents', 'recycle_bin']); //personal project, work stuff and cv can go to docs
   const [draggedItemId, setDraggedItemId] = useState<number>(0);
   const [desktopDimensions, setDesktopDimensions] = useState<DesktopDimensionsData>({width: 0, height: 0});
-  const openWindows = useSelector((state: RootState) => state.screen.windowsLayeringOrder)
+  const openWindows = useSelector((state: RootState) => state.screen.windowsLayeringOrder);
+  const windowsData = useSelector((state: RootState) => state.screen.windowsData);
 
   useEffect(() => {
     const desktopDimensions = getDesktopDimensions();
@@ -80,7 +81,8 @@ export function Desktop() {
         allowDrop={allowDrop}
         drag={drag}
         drop={drop}
-        shortcutName={shortcut}
+        shortcutName={shortcut ? windowsData[shortcut].name : null}
+        shortcutText={shortcut ? windowsData[shortcut].text : null}
         elementId={index}
         key={index}
       />

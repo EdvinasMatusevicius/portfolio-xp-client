@@ -4,6 +4,7 @@ export interface DesktopDimensionsData {
 export interface WindowLayeringOrderDataObj {
   id: number,
   name: string,
+  text: string,
   isMinimized?: boolean
 }
 export interface WindowsData {
@@ -12,7 +13,8 @@ export interface WindowsData {
 export interface ScreenState {
   windowsLayeringOrder: WindowLayeringOrderDataObj[],
   startMenuIsOpen: boolean,
-  activeTaskbarButtons: TaskbarButton[]
+  activeTaskbarButtons: TaskbarButton[],
+  windowsData: WindowsData
 }
 export interface TaskbarButton {
   name: string,

@@ -8,10 +8,11 @@ interface DesktopShortcutProps{
   drag: (e: React.DragEvent<HTMLDivElement>) => void;
   drop: (e: React.DragEvent<HTMLDivElement>) => void;
   shortcutName: string | null;
+  shortcutText: string | null,
   elementId: number;
 }
 export function DesktopShortcut(
-  {allowDrop, drag, drop, shortcutName, elementId}: DesktopShortcutProps
+  {allowDrop, drag, drop, shortcutName, shortcutText, elementId}: DesktopShortcutProps
 ): JSX.Element{
   const dispatch = useDispatch<AppDispatch>();
 
@@ -59,7 +60,7 @@ export function DesktopShortcut(
           height: '40%'
         }}
         />
-        <div>{shortcutName}</div>
+        <div>{shortcutText}</div>
     </div>
   return <div onDragOver={allowDrop} onDrop={drop} id={`${elementId}`}></div>
 }
