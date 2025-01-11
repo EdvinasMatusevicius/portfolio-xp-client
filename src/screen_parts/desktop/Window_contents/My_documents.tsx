@@ -1,5 +1,7 @@
-export function MyDocuments() {
-  return <div style={{width: '100%', height: '100%', background: 'yellow'}}>
-    my documents page
+import { PersonalProjects } from "./Personal_projects"
+
+export function MyDocuments(): JSX.Element {
+  return <div className="w-full h-full bg-white">
+    <PersonalProjects />
   </div>
 }

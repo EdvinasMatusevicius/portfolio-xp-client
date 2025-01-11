@@ -20,3 +20,15 @@ export interface TaskbarButton {
   name: string,
   isFocused: boolean
 }
+
+export interface ProjectCardData {
+  title: string
+  techUsed: string[]
+  photos: string[]
+  videos: string[]
+  description: string
+}
+
+export interface ProjectDataList {
+  [key: string]: ProjectCardData
+}

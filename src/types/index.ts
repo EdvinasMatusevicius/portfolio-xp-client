@@ -3,5 +3,7 @@ export type {
   WindowsData,
   ScreenState,
   TaskbarButton,
-  DesktopDimensionsData
+  DesktopDimensionsData,
+  ProjectCardData,
+  ProjectDataList
 } from './screen.interface'

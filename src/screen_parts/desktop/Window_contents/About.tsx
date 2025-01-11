@@ -1,5 +1,6 @@
-export function About() {
-  return <div style={{width: '100%', height: '100%', background: 'grey'}}>
-    about page
+
+export function About(): JSX.Element {
+  return <div className="w-full h-full bg-white">
+    about window
   </div>
 }

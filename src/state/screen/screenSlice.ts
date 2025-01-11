@@ -19,9 +19,19 @@ const windowsData: WindowsData = {
 }
 
 const initialScreenState: ScreenState = {
-  windowsLayeringOrder: [],
+  windowsLayeringOrder: [
+    {
+      id: 1,
+      name: 'my_documents',
+      text: 'test dokumentai',
+      isMinimized: false
+    }
+  ],
   startMenuIsOpen: false,
-  activeTaskbarButtons: [],
+  activeTaskbarButtons: [{
+    name: 'my_documents',
+    isFocused: true
+  }],
   windowsData: windowsData
 }
 
