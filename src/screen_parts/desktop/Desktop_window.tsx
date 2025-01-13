@@ -95,6 +95,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       backgroundColor: "#edead7",
       display: "grid",
       gridAutoRows: 'auto auto 1fr',
+      overflow: 'hidden',
       ...(isMinimized ? {display: 'none'} : {})
     }}
     onMouseDown={handleDragStart}
