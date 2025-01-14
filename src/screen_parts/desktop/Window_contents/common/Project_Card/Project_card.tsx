@@ -1,6 +1,6 @@
-import { PhotoCarousel } from './Photo_carousel';
+import { MediaCarousel } from '../Media_carousel/Media_carousel';
 import styles from './Project_card.module.css';
-import { ProjectDataList } from '../../../../types/index';
+import { ProjectDataList } from '../../../../../types/index';
 import cardDataRaw from './Project_card_data.json';
 
 const techIcons = import.meta.glob<Record<string, string>>('/src/assets/images/tech_icons/*.svg', { eager: true });
@@ -12,19 +12,22 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
   const projectData = cardData[projectName];
 
 
-  return <div className={styles.project_card_wrapper}>
+  return <div className={`${styles.project_card_wrapper}`}>
     <div className='flex justify-around items-end'>
-      <div className={styles.title}>{projectData.title}</div>
-      <div className='flex'>
+      <b className={styles.title}>{projectData.title}</b>
+      <div className='flex h-full'>
         {projectData.techUsed.map(
           (techName, i)=>{
             const imgSrc = techIcons[`/src/assets/images/tech_icons/${techName}.svg`]?.default;
-            return <img src={imgSrc} key={i} style={{maxHeight: '3rem'}}></img>
+            return <img src={imgSrc} key={i} style={{maxHeight: '100%'}}></img>
           }
         )}
       </div>
     </div>
     <div className={`${styles.fade_line} my-3`}></div>
-    <PhotoCarousel />
+    <MediaCarousel 
+      carouselGroupName="basicRPG"
+    />
+    <p>description should be here, check grid rules</p>
   </div>
 }

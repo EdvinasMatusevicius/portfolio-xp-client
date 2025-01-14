@@ -7,3 +7,7 @@ export type {
   ProjectCardData,
   ProjectDataList
 } from './screen.interface'
+export type {
+  MediaItem,
+  MediaCarouselData
+} from './mediaCarousel.interface'

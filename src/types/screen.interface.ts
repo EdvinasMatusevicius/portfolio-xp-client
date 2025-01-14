@@ -24,8 +24,7 @@ export interface TaskbarButton {
 export interface ProjectCardData {
   title: string
   techUsed: string[]
-  photos: string[]
-  videos: string[]
+  mediaCarousel: string,
   description: string
 }
 

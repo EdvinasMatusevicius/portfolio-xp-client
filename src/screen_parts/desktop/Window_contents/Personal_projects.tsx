@@ -1,18 +1,22 @@
-import { ProjectCard } from "./common/Project_card"
+import { ProjectCard } from "./common/Project_Card/Project_card"
 
 export function PersonalProjects(): JSX.Element {
   return <div 
       style={{
         display: 'grid',
         gridAutoColumns: '1fr 8fr 1fr',
-        gridTemplateAreas: '". projects-column ."'
+        gridTemplateAreas: '". projects-column ."',
+        width: '100%',
+        height: '100%'
       }}
-      className="w-full h-full bg-white"
     >
       <div 
         style={{ gridArea: 'projects-column'}}
-        className="w-full h-full p-2"
+        className="w-full h-full"
       >
+        <ProjectCard 
+          projectName='basicRPG'
+        />
         <ProjectCard 
           projectName='basicRPG'
         />

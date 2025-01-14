@@ -1,8 +1,11 @@
 .project_card_wrapper {
-  width: 100%;
-  background-color: #4ebbfa;
+  background-color: #64d0ff;
   border-radius: 5px;
-  padding: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 3rem 2rem 1fr;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
 }
 .title{
   height: 1.5rem;

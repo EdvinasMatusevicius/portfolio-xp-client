@@ -24,7 +24,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   const dispatch = useDispatch<AppDispatch>()
   const windowNode = useRef(null);
   const [windowIsMaximized, setWindowIsMaximized] = useState<boolean>(false);
-  const defaultWindowDimensions = { width: 500, height: 400 };
+  const defaultWindowDimensions = { width: 800, height: 550 };
   const [windowDimensions, setWindowDimensions] = useState({ 
     width: defaultWindowDimensions.width, 
     height: defaultWindowDimensions.height
@@ -110,7 +110,5 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       </div>
       <WindowHeader />
       <WindowContent  windowName={windowName}/>
-      {/* <h2>TEST CONTENT</h2>
-      <video src={video} width="750" height="500" controls></video> */}
   </div>
 }

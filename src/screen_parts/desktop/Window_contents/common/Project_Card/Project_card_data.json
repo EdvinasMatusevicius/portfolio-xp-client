@@ -1,9 +1,8 @@
 {
   "basicRPG":{
-    "title": "basic RPG",
+    "title": "basicRPG",
     "techUsed":["html", "js", "mysql"],
-    "photos": ["basicRPG.png"],
-    "videos": ["basicRPG.mp4"],
+    "mediaCarousel": "basicRPG",
     "description": "A game with pixel graphics that have most of rpg game components such as classes with different stats,leveling up, turn based combat,items with ability to save your character progress"
   }
 }
