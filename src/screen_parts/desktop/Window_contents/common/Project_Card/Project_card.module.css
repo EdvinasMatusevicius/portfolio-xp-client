@@ -3,18 +3,34 @@
   border-radius: 5px;
   width: 100%;
   display: grid;
-  grid-template-rows: 3rem 2rem 1fr;
+  grid-template-rows: 3rem auto 7fr 1fr;
   margin: 0 0 1rem 0;
   padding: 0.5rem;
+}
+.github_link{
+  width: 2rem;
+  display: flex;
+  align-items: center;
+}
+.github_link:hover{
+  width: 2.1rem;
 }
 .title{
   height: 1.5rem;
   font-size: 1.2rem;
   color: rgb(255, 255, 255);
+  margin: 0 1rem 0 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 .fade_line {
   height: 1px;
   width: 100%;
   margin: 0 auto;
   background-image: linear-gradient(to right,rgba(255, 255, 255, 0) 0%, rgb(0, 174, 255) 30%, rgb(0, 174, 255) 70%, rgba(255, 255, 255, 0) 100%);
+}
+.description{
+  font-size: 0.95rem;
+  color: rgb(255, 255, 255);
+  /* margin: 1rem; */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }

@@ -5,7 +5,8 @@ export interface WindowLayeringOrderDataObj {
   id: number,
   name: string,
   text: string,
-  isMinimized?: boolean
+  nestedRoutesHistory: string[]
+  isMinimized?: boolean,
 }
 export interface WindowsData {
   [key: string]: WindowLayeringOrderDataObj
@@ -25,7 +26,8 @@ export interface ProjectCardData {
   title: string
   techUsed: string[]
   mediaCarousel: string,
-  description: string
+  description: string,
+  gitLink: string
 }
 
 export interface ProjectDataList {

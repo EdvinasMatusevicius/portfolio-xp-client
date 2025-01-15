@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { bringWindowToFront, closeWindow, minimizeWindow } from '../../state/screen/screenSlice';
 import { AppDispatch } from "../../state/store";
@@ -35,6 +35,12 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     y: 200 + (Math.random()*50)
   });
   const windowsData = useSelector((state: RootState) => state.screen.windowsData);
+  const currentWindowData = useSelector((state: RootState) => state.screen.windowsLayeringOrder.filter(winData=>winData.name === windowName)[0]);
+  const [visitedWindowNestedRoutes, setNestedRoutes] = useState<string[]>([]);
+
+  useEffect(()=>{
+    setNestedRoutes(currentWindowData.nestedRoutesHistory);
+  }, [currentWindowData])
   
 
   const handleDragStart = (event: React.MouseEvent) => {
@@ -108,7 +114,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
           <button onMouseDown={handleCloseWindow} aria-label="Close" />
         </div>
       </div>
-      <WindowHeader />
-      <WindowContent  windowName={windowName}/>
+      <WindowHeader windowName={windowName} visitedRoutes={visitedWindowNestedRoutes} />
+      <WindowContent  windowName={windowName} currentRoute={visitedWindowNestedRoutes[visitedWindowNestedRoutes.length - 1]} />
   </div>
 }

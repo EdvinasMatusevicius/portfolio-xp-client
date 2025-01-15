@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { goBackToPrevWindowRoute } from '../../state/screen/screenSlice';
 
 import back from '../../assets/images/icons/back.png';
 import forward from '../../assets/images/icons/forward.png';
@@ -6,8 +7,15 @@ import home from '../../assets/images/icons/home.png';
 import refresh from '../../assets/images/icons/refresh.png';
 import stop from '../../assets/images/icons/stop.png';
 import windows from '../../assets/images/icons/windows.png';
+import { AppDispatch } from '../../state/store';
+import { useDispatch } from 'react-redux';
 
-export function WindowHeader() {
+export function WindowHeader({ windowName, visitedRoutes}: {windowName: string, visitedRoutes: string[]}) {
+  const dispatch = useDispatch<AppDispatch>()
+
+  function returnToPrevRoute() {
+    dispatch(goBackToPrevWindowRoute(windowName))
+  }
   return (
     <Container>
       <section className="header_toolbar">
@@ -22,14 +30,17 @@ export function WindowHeader() {
         <img className="header_windows-logo" src={windows} alt="windows" />
       </section>
       <section className="header_function_bar">
-        <div className='header_function_bar__button--disable'>
+        <div 
+          onClick={returnToPrevRoute}
+          className={`flex items-center header_function_bar__button${visitedRoutes.length > 1 ? '' : '--disable'}`}
+        >
           <img className="header_function_bar__icon" src={back} alt="" />
           <span className="header_function_bar__text">Back</span>
-          <div className="header_function_bar__arrow" />
+          {/* <div className="header_function_bar__arrow" /> */}
         </div>
         <div className="header_function_bar__button--disable">
           <img className="header_function_bar__icon" src={forward} alt="" />
-          <div className="header_function_bar__arrow" />
+          {/* <div className="header_function_bar__arrow" /> */}
         </div>
         <div className="header_function_bar__button--disable">
           <img className="header_function_bar__icon--margin-1" src={stop} alt="" />
@@ -92,7 +103,6 @@ const Container = styled.div`
     display: flex;
     height: 100%;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
   }
   .header_function_bar__text {
     margin-right: 4px;

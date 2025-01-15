@@ -2,6 +2,7 @@ import { MediaCarousel } from '../Media_carousel/Media_carousel';
 import styles from './Project_card.module.css';
 import { ProjectDataList } from '../../../../../types/index';
 import cardDataRaw from './Project_card_data.json';
+import githubIcon from '../../../../../assets/images/icons/github.png';
 
 const techIcons = import.meta.glob<Record<string, string>>('/src/assets/images/tech_icons/*.svg', { eager: true });
 
@@ -13,9 +14,9 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
 
 
   return <div className={`${styles.project_card_wrapper}`}>
-    <div className='flex justify-around items-end'>
-      <b className={styles.title}>{projectData.title}</b>
-      <div className='flex h-full'>
+    <div className='flex justify-between'>
+      <div className='flex items-end justify-start h-full'>
+        <b className={styles.title}>{projectData.title}</b>
         {projectData.techUsed.map(
           (techName, i)=>{
             const imgSrc = techIcons[`/src/assets/images/tech_icons/${techName}.svg`]?.default;
@@ -23,11 +24,14 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
           }
         )}
       </div>
+      <a href={projectData.gitLink} target="_blank" rel="noopener noreferrer" className={styles.github_link}>
+        <img src={githubIcon} alt="github Logo"/>
+      </a>
     </div>
-    <div className={`${styles.fade_line} my-3`}></div>
+    <div className={`${styles.fade_line} mb-3`}></div>
     <MediaCarousel 
       carouselGroupName="basicRPG"
     />
-    <p>description should be here, check grid rules</p>
+    <span className={styles.description}>{projectData.description}</span>
   </div>
 }

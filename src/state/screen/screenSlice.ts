@@ -13,9 +13,9 @@ import {
 import { ScreenState, WindowsData } from "../../types";
 
 const windowsData: WindowsData = {
-  about: { id:1, name: 'about', text: 'About' },
-  my_documents: { id:2, name: 'my_documents', text: 'My Documents' },
-  recycle_bin: { id:3, name: 'recycle_bin', text: 'Recycle Bin' },
+  about: { id:1, name: 'about', text: 'About', nestedRoutesHistory: ['about'] },
+  my_documents: { id:2, name: 'my_documents', text: 'My Documents', nestedRoutesHistory: ['my_documents'] },
+  recycle_bin: { id:3, name: 'recycle_bin', text: 'Recycle Bin', nestedRoutesHistory: ['recycle_bin'] },
 }
 
 const initialScreenState: ScreenState = {
@@ -24,7 +24,8 @@ const initialScreenState: ScreenState = {
       id: 1,
       name: 'my_documents',
       text: 'test dokumentai',
-      isMinimized: false
+      isMinimized: false,
+      nestedRoutesHistory: ['my_documents']
     }
   ],
   startMenuIsOpen: false,
@@ -71,6 +72,18 @@ const screenSlice = createSlice({
     },
     setStartMenuState(state, action: PayloadAction<boolean>) {
       state.startMenuIsOpen = action.payload;
+    },
+    openNewRouteInWindow(state, action: PayloadAction<{windowName: string, routeName: string}>) {
+      const {windowName, routeName} = action.payload;
+      const openWindowData = state.windowsLayeringOrder.filter(windowData=> windowData.name === windowName)[0];
+      if (!openWindowData) return;
+      openWindowData.nestedRoutesHistory.push(routeName);
+    },
+    goBackToPrevWindowRoute(state, action: PayloadAction<string>) {
+      const windowName = action.payload;
+      const openWindowData = state.windowsLayeringOrder.filter(windowData=> windowData.name === windowName)[0];
+      if (!openWindowData || openWindowData.nestedRoutesHistory.length < 2) return;
+      openWindowData.nestedRoutesHistory.pop();
     }
   }
 });
@@ -81,7 +94,9 @@ export const {
   closeWindow,
   minimizeWindow,
   toggleStartMenu,
-  setStartMenuState
+  setStartMenuState,
+  openNewRouteInWindow,
+  goBackToPrevWindowRoute
 } = screenSlice.actions;
 
 export default screenSlice.reducer;
