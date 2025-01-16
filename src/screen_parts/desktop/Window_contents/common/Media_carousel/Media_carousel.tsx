@@ -20,7 +20,7 @@ export function MediaCarousel({carouselGroupName}: CarouselProps): JSX.Element {
   }
   return (
     <div className={`${styles.carousel_wrapper} w-full h-full`}>
-      <div className='h-full flex justify-center' style={{margin: '0 15% 0 15%'}}>
+      <div className='h-full flex justify-center'>
         <MediaCarouselMainView mediaItem={media[selectedIndex]} />
       </div>
       <div className='w-full flex justify-center my-2'>

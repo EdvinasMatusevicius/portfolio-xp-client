@@ -33,18 +33,18 @@ export function WindowShortcut({windowName, routeName}: DesktopShortcutProps): J
         justifyContent: "center",
         alignItems: 'center',
         flexDirection: 'column',
-        color: 'white',
-        textShadow: '1px 1px 2px black'
+        color: 'black'
       }}
     >
       <img 
         src={image} 
         alt=""
         style={{
-          width: '40%',
-          height: '40%'
+          width: '60%',
+          height: '60%'
         }}
         />
+        <div>{routeName}</div>
         {/* <div>{shortcutText}</div>   TODO CREATE TS FILE WITH WINDOW SHORTCUT DATA and uncouple route name from img name   */}
     </div>
 }

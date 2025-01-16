@@ -1,7 +1,7 @@
 {
   "basicRPG":{
     "title": "basicRPG",
-    "techUsed":["html", "js", "mysql"],
+    "techUsed":["html", "js", "mysql", "ps"],
     "mediaCarousel": "basicRPG",
     "description": "A game with pixel graphics that have most of rpg game components such as classes with different stats,leveling up, turn based combat,items with ability to save your character progress",
     "gitLink": "https://github.com/EdvinasMatusevicius/basicRPG"

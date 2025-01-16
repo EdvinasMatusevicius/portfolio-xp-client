@@ -115,6 +115,10 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
         </div>
       </div>
       <WindowHeader windowName={windowName} visitedRoutes={visitedWindowNestedRoutes} />
-      <WindowContent  windowName={windowName} currentRoute={visitedWindowNestedRoutes[visitedWindowNestedRoutes.length - 1]} />
+      <WindowContent  
+        windowName={windowName} 
+        currentRoute={visitedWindowNestedRoutes[visitedWindowNestedRoutes.length - 1]}
+        windowIsMaximized={windowIsMaximized}
+      />
   </div>
 }

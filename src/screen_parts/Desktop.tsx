@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { DesktopShortcut } from "./desktop/Desktop_shortcut";
 import { DesktopWindow } from "./desktop/Desktop_window";
 import { useSelector } from "react-redux";
@@ -71,11 +71,9 @@ export function Desktop() {
     gridTemplateColumns: `repeat(auto-fill, minmax(${backgroundSquarePx}px, 1fr))`,
     gridTemplateRows: `repeat(auto-fill, minmax(${backgroundSquarePx}px, 1fr))`,
     gridAutoFlow: 'column',
-  }
-  return <div id='desktop-grid-container' style={{
     position: 'relative',
-    ...gridStyle
-  }}>
+  } as CSSProperties
+  return <div id='desktop-grid-container' style={{...gridStyle}}>
     {shortcuts.map((shortcut, index) => {
       return <DesktopShortcut 
         allowDrop={allowDrop}
