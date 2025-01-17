@@ -40,8 +40,8 @@ export function WindowShortcut({windowName, routeName}: DesktopShortcutProps): J
         src={image} 
         alt=""
         style={{
-          width: '60%',
-          height: '60%'
+          width: '50%',
+          height: '50%'
         }}
         />
         <div>{routeName}</div>

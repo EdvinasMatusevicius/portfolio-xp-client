@@ -9,11 +9,15 @@
 }
 .github_link{
   width: 2rem;
+  height: 100%;
+  margin: 0 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.github_link:hover{
-  width: 2.1rem;
+.github_link img:hover{
+  transform: scale(1.05);
 }
 .title{
   height: 1.5rem;

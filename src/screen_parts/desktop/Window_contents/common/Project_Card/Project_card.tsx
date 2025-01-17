@@ -16,21 +16,33 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
   return <div className={`${styles.project_card_wrapper}`}>
     <div className='flex justify-between'>
       <div className='flex items-end justify-start h-full'>
-        <b className={styles.title}>{projectData.title}</b>
+        <b className={`${styles.title} whitespace-nowrap`}>{projectData.title}</b>
         {projectData.techUsed.map(
           (techName, i)=>{
             const imgSrc = techIcons[`/src/assets/images/tech_icons/${techName}.svg`]?.default;
-            return <img src={imgSrc} key={i} style={{maxHeight: '100%'}}></img>
+            return <img src={imgSrc} key={i} style={{maxHeight: '60%', margin: '2px'}}></img>
           }
         )}
       </div>
-      <a href={projectData.gitLink} target="_blank" rel="noopener noreferrer" className={styles.github_link}>
-        <img src={githubIcon} alt="github Logo"/>
-      </a>
+      <div className='flex justify-between'>
+        {projectData.gitLinks.map(
+          (gitData, i)=>{
+            return <a 
+              href={gitData.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={styles.github_link} key={i}
+            >
+              <img src={githubIcon} alt="github Logo"/>
+              { gitData.text && <span className='whitespace-nowrap'>{gitData.text}</span>}
+            </a>
+          }
+        )}
+      </div>
     </div>
     <div className={`${styles.fade_line} mb-3`}></div>
     <MediaCarousel 
-      carouselGroupName="basicRPG"
+      carouselGroupName={projectData.mediaCarousel}
     />
     <span className={styles.description}>{projectData.description}</span>
   </div>

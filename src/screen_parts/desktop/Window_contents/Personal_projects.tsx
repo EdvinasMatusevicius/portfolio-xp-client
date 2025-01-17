@@ -3,11 +3,13 @@ import { ProjectCard } from "./common/Project_Card/Project_card"
 
 export function PersonalProjects({windowIsMaximized}: {windowIsMaximized: boolean}): JSX.Element {
   const projectsWrapperCss = {
+    position: 'relative',
     display: 'grid',
     gridAutoColumns: '1fr 10fr 1fr',
     gridTemplateAreas: '". projects-column ."',
     width: '100%',
-    height: '100%'
+    minHeight: '100%',
+    backgroundColor: 'white'
   } as CSSProperties;
   const projectCardsColumnCss = {
     minWidth: '100%',
@@ -27,39 +29,16 @@ export function PersonalProjects({windowIsMaximized}: {windowIsMaximized: boolea
         style={projectCardsColumnCss}
       >
         <ProjectCard 
-          projectName='basicRPG'
+          projectName='serverPi'
         />
-
-        {/* TODO REMOVE THESE PLACEHOLDER COPIES */}
         <ProjectCard 
           projectName='basicRPG'
         />
-                <ProjectCard 
-          projectName='basicRPG'
+        <ProjectCard 
+          projectName='darboBaze'
         />
-                <ProjectCard 
-          projectName='basicRPG'
-        />
-                        <ProjectCard 
-          projectName='basicRPG'
-        />
-                                <ProjectCard 
-          projectName='basicRPG'
-        />
-                <ProjectCard 
-          projectName='basicRPG'
-        />
-                <ProjectCard 
-          projectName='basicRPG'
-        />
-                <ProjectCard 
-          projectName='basicRPG'
-        />
-                        <ProjectCard 
-          projectName='basicRPG'
-        />
-                                <ProjectCard 
-          projectName='basicRPG'
+        <ProjectCard 
+          projectName='basicChat'
         />
       </div>
   </div>

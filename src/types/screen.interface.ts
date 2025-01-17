@@ -27,7 +27,7 @@ export interface ProjectCardData {
   techUsed: string[]
   mediaCarousel: string,
   description: string,
-  gitLink: string
+  gitLinks: {link: string, text?: string}[]
 }
 
 export interface ProjectDataList {
