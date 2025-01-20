@@ -3,11 +3,12 @@ import { AppDispatch } from "../../../../../state/store";
 import { openNewRouteInWindow } from "../../../../../state/screen/screenSlice";
 import { useEffect, useState } from "react";
 
-interface DesktopShortcutProps{
+interface WindowShortcutProps{
   routeName: string,
-  windowName: string
+  windowName: string,
+  text: string
 }
-export function WindowShortcut({windowName, routeName}: DesktopShortcutProps): JSX.Element{
+export function WindowShortcut({windowName, routeName, text}: WindowShortcutProps): JSX.Element{
   const dispatch = useDispatch<AppDispatch>();
 
   function onDoubleClickHandler(e: React.MouseEvent<HTMLElement>) {
@@ -30,21 +31,22 @@ export function WindowShortcut({windowName, routeName}: DesktopShortcutProps): J
       onDoubleClick={onDoubleClickHandler}
       style={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "start",
         alignItems: 'center',
-        flexDirection: 'column',
-        color: 'black'
+        flexDirection: 'row',
+        color: 'black',
+        userSelect: 'none'
       }}
     >
       <img 
         src={image} 
         alt=""
         style={{
-          width: '50%',
-          height: '50%'
+          width: '3rem',
+          height: '3rem'
         }}
         />
-        <div>{routeName}</div>
+        <div>{text}</div>
         {/* <div>{shortcutText}</div>   TODO CREATE TS FILE WITH WINDOW SHORTCUT DATA and uncouple route name from img name   */}
     </div>
 }

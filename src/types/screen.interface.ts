@@ -19,6 +19,7 @@ export interface ScreenState {
 }
 export interface TaskbarButton {
   name: string,
+  text: string,
   isFocused: boolean
 }
 

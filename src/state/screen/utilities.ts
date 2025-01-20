@@ -39,13 +39,13 @@ export function restoreMinimizedWindow(windowsLayeringOrder: WindowLayeringOrder
   })
 }
 
-export function addTaskbarButtonToArr(taskbarButtonsArr: TaskbarButton[], buttonName: string) {
+export function addTaskbarButtonToArr(taskbarButtonsArr: TaskbarButton[], windowsData: WindowsData, buttonName: string) {
   const existingTaskbarBTtnIndex = taskbarButtonsArr.map((btnData: TaskbarButton) => btnData.name).indexOf(buttonName);
   taskbarButtonsArr.forEach(btnData=>btnData.isFocused = false);
   if (existingTaskbarBTtnIndex !== -1) {
     taskbarButtonsArr[existingTaskbarBTtnIndex].isFocused = true;
   } else {
-    taskbarButtonsArr.push({name: buttonName, isFocused: true})
+    taskbarButtonsArr.push({name: buttonName, text: windowsData[buttonName].text, isFocused: true})
   }
 }
 export function removeTaskbarBtn(taskbarButtonsArr: TaskbarButton[], buttonName: string) {

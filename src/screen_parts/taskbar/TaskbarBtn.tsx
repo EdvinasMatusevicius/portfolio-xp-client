@@ -6,10 +6,11 @@ import icons from '../../assets/images/icons/289(32x32).png'
 
 interface BtnProps {
   name: string,
+  text: string,
   isFocused: boolean
 }
 
-export function TaskbarBtn({name, isFocused}: BtnProps){
+export function TaskbarBtn({name, text, isFocused}: BtnProps){
   const dispatch = useDispatch<AppDispatch>();
   function onClickHandler() {
     if (isFocused) dispatch(minimizeWindow(name));
@@ -21,7 +22,7 @@ export function TaskbarBtn({name, isFocused}: BtnProps){
       onClick={onClickHandler}
     >
       <img src={icons} style={{height: '50%'}}/>
-      {name}
+      {text}
     </div>
   )
 }

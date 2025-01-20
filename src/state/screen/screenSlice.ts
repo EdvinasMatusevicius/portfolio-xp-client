@@ -31,6 +31,7 @@ const initialScreenState: ScreenState = {
   startMenuIsOpen: false,
   activeTaskbarButtons: [{
     name: 'my_documents',
+    text: 'My documents',
     isFocused: true
   }],
   windowsData: windowsData
@@ -45,7 +46,7 @@ const screenSlice = createSlice({
       state.startMenuIsOpen = false;
       const windowToOpen = action.payload;
       addNewToWindowOrder(state.windowsLayeringOrder, state.windowsData, windowToOpen);
-      addTaskbarButtonToArr(state.activeTaskbarButtons, windowToOpen);
+      addTaskbarButtonToArr(state.activeTaskbarButtons, state.windowsData, windowToOpen);
     },
     closeWindow: (state, action: PayloadAction<string>) =>{
       state.startMenuIsOpen = false;

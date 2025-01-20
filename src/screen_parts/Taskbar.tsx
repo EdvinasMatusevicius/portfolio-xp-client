@@ -24,6 +24,7 @@ export function Taskbar() {
                 return <TaskbarBtn
                   name={btnData.name}
                   isFocused={btnData.isFocused}
+                  text={btnData.text}
                   key={index}
                 />
               })}

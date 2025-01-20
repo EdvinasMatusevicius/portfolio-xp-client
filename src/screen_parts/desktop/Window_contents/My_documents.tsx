@@ -9,10 +9,10 @@ export function MyDocuments({windowName}: {windowName: string}): JSX.Element {
     height: '100%',
     padding: '0.5rem',
     display: 'grid',
-    gridTemplateColumns: `repeat(auto-fill, minmax(5rem, 1fr))`,
-    gridTemplateRows: `repeat(auto-fill, minmax(5rem, 1fr))`,
+    gridTemplateColumns: `repeat(auto-fill, minmax(25%, 1fr))`,
+    gridTemplateRows: `repeat(auto-fill, minmax(6rem, 1fr))`,
   } as CSSProperties;
   return <div style={{ ...shortcutsWrapperStyles }} >
-    <WindowShortcut routeName="personal_projects"  windowName={windowName}/>
+    <WindowShortcut routeName="personal_projects" text="Personal projects" windowName={windowName}/>
   </div>
 }
