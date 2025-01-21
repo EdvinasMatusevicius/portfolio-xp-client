@@ -233,5 +233,16 @@
   margin: 0 5px;
   color: #fff;
   font-size: 11px;
-
+}
+.taskbar_menu_shortcut{
+  color: black;
+  font-family: Tahoma;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+  user-select: none;
+}
+.taskbar_menu_shortcut:hover{
+  background-color: #005fd2;
+  color: white;
 }

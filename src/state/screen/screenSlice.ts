@@ -20,20 +20,22 @@ const windowsData: WindowsData = {
 
 const initialScreenState: ScreenState = {
   windowsLayeringOrder: [
-    {
-      id: 1,
-      name: 'my_documents',
-      text: 'test dokumentai',
-      isMinimized: false,
-      nestedRoutesHistory: ['my_documents']
-    }
+    // {
+    //   id: 1,
+    //   name: 'my_documents',
+    //   text: 'test dokumentai',
+    //   isMinimized: false,
+    //   nestedRoutesHistory: ['my_documents']
+    // }
   ],
   startMenuIsOpen: false,
-  activeTaskbarButtons: [{
-    name: 'my_documents',
-    text: 'My documents',
-    isFocused: true
-  }],
+  activeTaskbarButtons: [
+    // {
+    //   name: 'my_documents',
+    //   text: 'My documents',
+    //   isFocused: true
+    // }
+  ],
   windowsData: windowsData
 }
 

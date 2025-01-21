@@ -6,6 +6,7 @@ import { setStartMenuState, toggleStartMenu } from "../../state/screen/screenSli
 import userImg from '../../assets/images/icons/user.png';
 import logOff from '../../assets/images/icons/logOff.png';
 import turnOff from '../../assets/images/icons/turnOff.png';
+import { TaskbarMenuShortcut } from './TaskbarMenuShortcut';
 
 export function TaskbarMenu(){
   const menuRef = useRef(null);
@@ -46,7 +47,12 @@ export function TaskbarMenu(){
             <img className={styles.startMenuTopImg} src={userImg} alt="avatar" />
             <span className={styles.startMenuTopText}>User</span>
           </div>
-          <div className={styles.startMenuMiddle}></div>
+          <div className={styles.startMenuMiddle}>
+            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
+            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
+            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
+            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
+          </div>
           <div className={styles.startMenuBottom}>
             <div className='flex items-center justify-center m-2 font-xp'>
               <img src={logOff} alt="logOff" />

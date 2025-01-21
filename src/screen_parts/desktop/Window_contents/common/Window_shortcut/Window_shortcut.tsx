@@ -35,7 +35,9 @@ export function WindowShortcut({windowName, routeName, text}: WindowShortcutProp
         alignItems: 'center',
         flexDirection: 'row',
         color: 'black',
-        userSelect: 'none'
+        userSelect: 'none',
+        fontFamily: 'Tahoma',
+        fontWeight: '100'
       }}
     >
       <img 
@@ -43,7 +45,8 @@ export function WindowShortcut({windowName, routeName, text}: WindowShortcutProp
         alt=""
         style={{
           width: '3rem',
-          height: '3rem'
+          height: '3rem',
+          marginRight: '0.5rem'
         }}
         />
         <div>{text}</div>
