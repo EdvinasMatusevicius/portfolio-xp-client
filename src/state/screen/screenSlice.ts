@@ -13,9 +13,32 @@ import {
 import { ScreenState, WindowsData } from "../../types";
 
 const windowsData: WindowsData = {
-  about: { id:1, name: 'about', text: 'About', nestedRoutesHistory: ['about'] },
-  my_documents: { id:2, name: 'my_documents', text: 'My Documents', nestedRoutesHistory: ['my_documents'] },
-  recycle_bin: { id:3, name: 'recycle_bin', text: 'Recycle Bin', nestedRoutesHistory: ['recycle_bin'] },
+  about: { 
+      id:1,
+      name: 'about',
+      text: 'About',
+      nestedRoutesHistory: []
+    },
+
+  my_documents: { 
+    id:2,
+    name: 'my_documents',
+    text: 'My Documents',
+    nestedRoutesHistory: []
+  },
+
+  recycle_bin: { 
+    id:3,
+    name: 'recycle_bin',
+    text: 'Recycle Bin',
+    nestedRoutesHistory: []
+  },
+  personal_projects: { 
+    id:3,
+    name: 'personal_projects',
+    text: 'Personal projects',
+    nestedRoutesHistory: []
+  }
 }
 
 const initialScreenState: ScreenState = {
@@ -48,7 +71,7 @@ const screenSlice = createSlice({
       state.startMenuIsOpen = false;
       const windowToOpen = action.payload;
       addNewToWindowOrder(state.windowsLayeringOrder, state.windowsData, windowToOpen);
-      addTaskbarButtonToArr(state.activeTaskbarButtons, state.windowsData, windowToOpen);
+      addTaskbarButtonToArr(state.activeTaskbarButtons, windowToOpen);
     },
     closeWindow: (state, action: PayloadAction<string>) =>{
       state.startMenuIsOpen = false;

@@ -1,17 +1,25 @@
 import styles from './Taskbar.module.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bringWindowToFront, minimizeWindow } from '../../state/screen/screenSlice';
-import { AppDispatch } from "../../state/store";
+import { AppDispatch, RootState } from "../../state/store";
 import icons from '../../assets/images/icons/289(32x32).png'
+import { useEffect, useState } from 'react';
 
 interface BtnProps {
   name: string,
-  text: string,
   isFocused: boolean
 }
 
-export function TaskbarBtn({name, text, isFocused}: BtnProps){
+export function TaskbarBtn({name, isFocused}: BtnProps){
+  const windowsData = useSelector((state: RootState) => state.screen.windowsData);
+  const activeWindowsArr = useSelector((state: RootState) => state.screen.windowsLayeringOrder);
+  const [currentWindowRoute, setCurrentWindowRoute] = useState<string>('');
   const dispatch = useDispatch<AppDispatch>();
+  useEffect(()=>{
+    const btnWindowRoutesArr = activeWindowsArr.find((activeWin)=>activeWin.name === name)?.nestedRoutesHistory;
+    if (!btnWindowRoutesArr) return;
+    setCurrentWindowRoute(btnWindowRoutesArr[btnWindowRoutesArr?.length - 1])
+  }, [activeWindowsArr, name])
   function onClickHandler() {
     if (isFocused) dispatch(minimizeWindow(name));
     else dispatch(bringWindowToFront(name));
@@ -22,7 +30,7 @@ export function TaskbarBtn({name, text, isFocused}: BtnProps){
       onClick={onClickHandler}
     >
       <img src={icons} style={{height: '50%'}}/>
-      {text}
+      {windowsData[currentWindowRoute]?.text}
     </div>
   )
 }

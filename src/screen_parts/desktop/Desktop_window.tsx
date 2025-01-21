@@ -37,10 +37,13 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   const windowsData = useSelector((state: RootState) => state.screen.windowsData);
   const currentWindowData = useSelector((state: RootState) => state.screen.windowsLayeringOrder.filter(winData=>winData.name === windowName)[0]);
   const [visitedWindowNestedRoutes, setNestedRoutes] = useState<string[]>([]);
+  const [currentRoute, setCurrentRoute] = useState<string>('');
 
   useEffect(()=>{
-    setNestedRoutes(currentWindowData.nestedRoutesHistory);
-  }, [currentWindowData])
+    const nestedRoutesHistory = currentWindowData.nestedRoutesHistory;
+    setNestedRoutes(nestedRoutesHistory);
+    setCurrentRoute(nestedRoutesHistory[nestedRoutesHistory.length - 1])
+  }, [currentWindowData]);
   
 
   const handleDragStart = (event: React.MouseEvent) => {
@@ -107,7 +110,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     onMouseDown={handleDragStart}
   >
       <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar">
-        <div className="title-bar-text">{windowsData[windowName].text}</div>
+        <div className="title-bar-text">{windowsData[currentRoute]?.text}</div>
         <div className="title-bar-controls">
           <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
           <button onMouseDown={toggleMaximizeWindow} aria-label={`${windowIsMaximized ? 'Restore' : 'Maximize'}`} />
@@ -117,7 +120,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       <WindowHeader windowName={windowName} visitedRoutes={visitedWindowNestedRoutes} />
       <WindowContent  
         windowName={windowName} 
-        currentRoute={visitedWindowNestedRoutes[visitedWindowNestedRoutes.length - 1]}
+        currentRoute={currentRoute}
         windowIsMaximized={windowIsMaximized}
       />
   </div>
