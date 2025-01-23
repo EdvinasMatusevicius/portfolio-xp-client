@@ -38,6 +38,13 @@ const windowsData: WindowsData = {
     name: 'personal_projects',
     text: 'Personal projects',
     nestedRoutesHistory: []
+  },
+  minesweeper: { 
+    id:4,
+    name: 'minesweeper',
+    text: 'Minesweeper',
+    nestedRoutesHistory: [],
+    hideWindowHeader: true
   }
 }
 

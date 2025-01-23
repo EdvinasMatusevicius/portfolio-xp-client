@@ -16,11 +16,12 @@ interface DesktopWindowProps {
   windowName: string,
   zIndexVal: number,
   isMinimized?: boolean,
-  desktopDimensions: DesktopDimensionsData
+  desktopDimensions: DesktopDimensionsData,
+  hideHeader: boolean | undefined
 }
 
 
-export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimensions}: DesktopWindowProps): JSX.Element {
+export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimensions, hideHeader}: DesktopWindowProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>()
   const windowNode = useRef(null);
   const [windowIsMaximized, setWindowIsMaximized] = useState<boolean>(false);
@@ -117,7 +118,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
           <button onMouseDown={handleCloseWindow} aria-label="Close" />
         </div>
       </div>
-      <WindowHeader windowName={windowName} visitedRoutes={visitedWindowNestedRoutes} />
+      {hideHeader ? <div></div> : <WindowHeader windowName={windowName} visitedRoutes={visitedWindowNestedRoutes} />}
       <WindowContent  
         windowName={windowName} 
         currentRoute={currentRoute}
