@@ -11,3 +11,7 @@ export type {
   MediaItem,
   MediaCarouselData
 } from './mediaCarousel.interface'
+export type {
+  TileData,
+  TilesGraph
+} from './minesweeper.interface'

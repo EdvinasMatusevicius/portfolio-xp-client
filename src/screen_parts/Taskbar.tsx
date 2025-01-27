@@ -14,7 +14,7 @@ export function Taskbar() {
   useEffect(()=>{
     const timeCheckInterval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timeCheckInterval);
-  });
+  }, []);
   return  <div className={styles.startBg}>
             {/* start btn with menu */}
             <TaskbarMenu />
