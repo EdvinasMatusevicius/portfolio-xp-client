@@ -1,6 +1,8 @@
 import { TileData } from "../../../../types/minesweeper.interface"
 
 import hidden_normal from "../../../../assets/minesweeper/tiles/hidden_normal.svg";
+import hidden_marked_mined from "../../../../assets/minesweeper/tiles/hidden_marked_mined.svg";
+import hidden_marked_question_mark from "../../../../assets/minesweeper/tiles/hidden_marked_question_mark.svg";
 import showing_empty from "../../../../assets/minesweeper/tiles/showing_empty.svg";
 import showing_mined_normal from "../../../../assets/minesweeper/tiles/showing_mined_normal.svg";
 import showing_mined_exploded from "../../../../assets/minesweeper/tiles/showing_mined_exploded.svg";
@@ -37,7 +39,9 @@ export function Tile({tileData, index, onTitleClick}: TileProps): JSX.Element {
   useEffect(()=>{
     let tileImg;
     if (tileData.hidden) {
-      tileImg = hidden_normal;
+      if (!tileData.marked) tileImg = hidden_normal;
+      if (tileData.marked === 'mined') tileImg = hidden_marked_mined;
+      if (tileData.marked === 'questionMark') tileImg = hidden_marked_question_mark;
     } else if (!tileData.hidden) {
       if (tileData.mined) tileImg = showing_mined_normal;
       if (tileData.mined && tileData.mineExploded) tileImg = showing_mined_exploded;
@@ -47,7 +51,11 @@ export function Tile({tileData, index, onTitleClick}: TileProps): JSX.Element {
     setTileImg(tileImg)
   }, [tileData]);
   
-  return <div className="w-full h-full" onClick={(e)=>onTitleClick(e, tileData, index)}>
+  return <div 
+    className="w-full h-full"
+    onContextMenu={(e)=>onTitleClick(e, tileData, index)} //right click
+    onClick={(e)=>onTitleClick(e, tileData, index)} //left click
+  >
     <img className="w-full h-full" src={tileImg} alt="My Logo" />
   </div>
 

@@ -58,9 +58,16 @@ export function getGridGraphWithAllHidden(graph: {[index: string]: TileData}) {
   }
   return clonedGrid;
 }
+export function getGridGraphOnHiddenTileRightClick(graph: TilesGraph, indexToShow: number) {
+  const clonedGrid: TilesGraph = JSON.parse(JSON.stringify(graph));
+  const tileData = clonedGrid[indexToShow];
+  if (!tileData.hidden) return graph;
+  if (!tileData.marked) tileData.marked = 'mined';
+  else if (tileData.marked === 'mined') tileData.marked = 'questionMark';
+  else if (tileData.marked === 'questionMark') tileData.marked = null;
+  return clonedGrid;
+}
 export function getGridGraphOnIndexShow(graph: TilesGraph, indexToShow: number) {
-  console.log('paspaudimas')
-  console.log('start',graph)
   const clonedGrid: TilesGraph = JSON.parse(JSON.stringify(graph));
   const tileToShow = clonedGrid[indexToShow];
   if (!tileToShow.hidden || tileToShow.marked === 'mined') return clonedGrid;

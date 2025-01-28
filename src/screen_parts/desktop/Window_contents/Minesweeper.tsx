@@ -1,6 +1,11 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { TileData } from '../../../types/minesweeper.interface';
-import { buildGridGraph, getGridGraphOnIndexShow, populateEmptyWithMines, populateGraphWithNumbers } from './Minesweeper/helperFunctions';
+import { buildGridGraph,
+  getGridGraphOnIndexShow, 
+  populateEmptyWithMines, 
+  populateGraphWithNumbers,
+  getGridGraphOnHiddenTileRightClick
+} from './Minesweeper/helperFunctions';
 import { SmileyFace } from './Minesweeper/SmileyFace';
 import { Tile } from './Minesweeper/Tile';
 import styles from './Minesweeper/Minesweeper.module.css'
@@ -21,12 +26,19 @@ export function MineSweeper(): JSX.Element {
     return graph;
   }
   function onTileClick(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
-    if (tileData.hidden) showTile(index);
+    event.preventDefault();
+    if (tileData.hidden && event.button === 2) return markTile(index);
+    if (tileData.hidden && event.button === 0) return showTile(index);
   }
 
   function showTile(tileIndex: number) {
     if (!tilesGraph[tileIndex]?.hidden) return;
     const newGraph = getGridGraphOnIndexShow(tilesGraph, tileIndex);
+    setTileGraph(newGraph);
+  }
+  function markTile(tileIndex: number) {
+    if (!tilesGraph[tileIndex]?.hidden) return;
+    const newGraph = getGridGraphOnHiddenTileRightClick(tilesGraph, tileIndex);
     setTileGraph(newGraph);
   }
 
