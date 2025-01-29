@@ -108,9 +108,8 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       overflow: 'hidden',
       ...(isMinimized ? {display: 'none'} : {})
     }}
-    onMouseDown={handleDragStart}
   >
-      <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar">
+      <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar" onMouseDown={handleDragStart}>
         <div className="title-bar-text">{windowsData[currentRoute]?.text}</div>
         <div className="title-bar-controls">
           <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
