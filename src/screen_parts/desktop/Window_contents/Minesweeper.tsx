@@ -14,6 +14,8 @@ export function MineSweeper(): JSX.Element {
   const [tilesGraph, setTileGraph] = useState<{[index: string]: TileData}>({});
   const [hasWon, setHasWon] = useState<boolean>(false);
   const [roundFinished, setRoundFinished] = useState<boolean>(false);
+  const [leftButtonIsPressed, setLeftButtonIsPressed] = useState<boolean>(false);
+  const [rightButtonIsPressed, setRightButtonIsPressed] = useState<boolean>(false);
   const [tilesMarkedAsMined, setTilesMarkedAsMined] = useState<number>(0);
   const [gridTileCount, setGridTileCount] = useState<number>(25);
   const [minesCount, setGridMinesCount] = useState<number>(2);
@@ -38,19 +40,33 @@ export function MineSweeper(): JSX.Element {
     }
     setTilesMarkedAsMined(minesMarked);
   }, [tilesGraph]);
+
   function buildFullGridGraph(tilesCount: number, minesCunt: number) {
     const graph = buildGridGraph(tilesCount);
     populateEmptyWithMines(graph, minesCunt);
     populateGraphWithNumbers(graph);
     return graph;
   }
-  function onTileClick(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
+  function onTileClickRelease(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
     if (roundFinished) return;
-    event.preventDefault();
-    if (tileData.hidden && event.button === 2) return markTile(index);
-    if (tileData.hidden && event.button === 0) return showTile(index);
+    if (event.button === 2) {
+      setRightButtonIsPressed(false);
+      if (tileData.hidden) return markTile(index);
+    }
+    if (event.button === 0) {
+      setLeftButtonIsPressed(false)
+      if (tileData.hidden) return showTile(index);
+    }
   }
-
+  function onTileClickPress(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
+    if (roundFinished) return;
+    if (tileData.hidden && event.button === 2) return setRightButtonIsPressed(true);
+    if (tileData.hidden && event.button === 0) return setLeftButtonIsPressed(true);
+  }
+  function onTileLeave() {
+    if (leftButtonIsPressed) setLeftButtonIsPressed(false);
+    if (rightButtonIsPressed) setRightButtonIsPressed(false);
+  }
   function showTile(tileIndex: number) {
     if (!tilesGraph[tileIndex]?.hidden) return;
     const newGraph = getGridGraphOnIndexShow(tilesGraph, tileIndex);
@@ -75,15 +91,20 @@ export function MineSweeper(): JSX.Element {
     gridTemplateRows: `repeat(${Math.sqrt(Object.keys(tilesGraph).length)}, 5rem)`,
   } as CSSProperties;
 
-  return <div>
+  return <div style={{userSelect: 'none'}}>
     {/* smiley */}
     <SmileyFace 
       onSmileyClick={resetBoard}
+      roundFinished={roundFinished}
+      hasWon={hasWon}
+      leftBtnIsPressed={leftButtonIsPressed}
     />
 
     <div>has WON:{JSON.stringify(hasWon && roundFinished)}</div>
     <div>has LOST:{JSON.stringify(!hasWon && roundFinished)}</div>
     <div>FLAGS LEFT:{minesCount - tilesMarkedAsMined}</div>
+    <div>LEFT BTN IS PRESSED: {JSON.stringify(leftButtonIsPressed)}</div>
+    <div>RIGHT BTN IS PRESSED: {JSON.stringify(rightButtonIsPressed)}</div>
 
     {/* tile grid */}
     <div style={{...shortcutsWrapperStyles}}>
@@ -92,7 +113,9 @@ export function MineSweeper(): JSX.Element {
           tileData={tileData} 
           key={key}
           index={parseInt(key)}
-          onTitleClick={onTileClick}
+          onTitleClickRelease={onTileClickRelease}
+          onTitleClickPress={onTileClickPress}
+          onTileLeave={onTileLeave}
         />
       })};
     </div>

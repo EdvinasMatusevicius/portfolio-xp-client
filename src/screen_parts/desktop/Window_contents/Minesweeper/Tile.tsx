@@ -30,12 +30,19 @@ const tileNumbsImgs: {[index: string]: string} = {
 interface TileProps{
   tileData: TileData,
   index: number,
-  onTitleClick: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void
+  onTitleClickRelease: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void
+  onTitleClickPress: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void
+  onTileLeave: () => void
 }
 
-export function Tile({tileData, index, onTitleClick}: TileProps): JSX.Element {
+export function Tile({
+  tileData,
+  index,
+  onTitleClickRelease,
+  onTitleClickPress,
+  onTileLeave
+}: TileProps): JSX.Element {
   const [tileImg, setTileImg] = useState<string>();
-
   useEffect(()=>{
     let tileImg;
     if (tileData.hidden) {
@@ -52,11 +59,14 @@ export function Tile({tileData, index, onTitleClick}: TileProps): JSX.Element {
   }, [tileData]);
   
   return <div 
+    style={{userSelect: 'none'}}
     className="w-full h-full"
-    onContextMenu={(e)=>onTitleClick(e, tileData, index)} //right click
-    onClick={(e)=>onTitleClick(e, tileData, index)} //left click
+    onMouseDown={(e)=>onTitleClickPress(e, tileData, index)}
+    onMouseUp={(e)=>onTitleClickRelease(e, tileData, index)}
+    onMouseLeave={()=>onTileLeave()}
+    onContextMenu={(e)=>e.preventDefault()} //prevents right click menu from opening 
   >
-    <img className="w-full h-full" src={tileImg} alt="My Logo" />
+    <img style={{pointerEvents: 'none'}} className="w-full h-full" src={tileImg} alt="My Logo" />
   </div>
 
 }
