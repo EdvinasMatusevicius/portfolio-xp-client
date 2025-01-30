@@ -87,6 +87,7 @@ function _showGridGraphAreaOnEmptyTilePress(graph: TilesGraph, index: number) {
     const currentIndex = queue.shift();
     if (typeof currentIndex != 'number') break;
     const tileData = graph[currentIndex];
+    if (tileData.marked === 'mined') continue;
     if (tileData.minedNeighborCount) tileData.hidden = false;
     if (tileData.minedNeighborCount === 0) {
       tileData.hidden = false;

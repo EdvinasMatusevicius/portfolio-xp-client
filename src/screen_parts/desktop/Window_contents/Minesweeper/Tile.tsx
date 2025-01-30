@@ -3,7 +3,9 @@ import { TileData } from "../../../../types/minesweeper.interface"
 import hidden_normal from "../../../../assets/minesweeper/tiles/hidden_normal.svg";
 import hidden_marked_mined from "../../../../assets/minesweeper/tiles/hidden_marked_mined.svg";
 import hidden_marked_question_mark from "../../../../assets/minesweeper/tiles/hidden_marked_question_mark.svg";
+import hidden_marked_question_mark_pressed from "../../../../assets/minesweeper/tiles/hidden_marked_question_mark_pressed.svg";
 import showing_empty from "../../../../assets/minesweeper/tiles/showing_empty.svg";
+import showing_empty_incorrectly_marked from "../../../../assets/minesweeper/tiles/showing_empty_incorrectly_marked.svg";
 import showing_mined_normal from "../../../../assets/minesweeper/tiles/showing_mined_normal.svg";
 import showing_mined_exploded from "../../../../assets/minesweeper/tiles/showing_mined_exploded.svg";
 import tile_1 from "../../../../assets/minesweeper/tiles/01.svg";
@@ -30,25 +32,35 @@ const tileNumbsImgs: {[index: string]: string} = {
 interface TileProps{
   tileData: TileData,
   index: number,
-  onTitleClickRelease: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void
-  onTitleClickPress: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void
-  onTileLeave: () => void
+  isPressed: boolean,
+  roundFinished: boolean,
+  onTitleClickRelease: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void,
+  onTitleClickPress: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void,
+  onTileLeave: () => void,
+  onTileEnter: (index: number) => void
 }
 
 export function Tile({
   tileData,
   index,
+  isPressed,
+  roundFinished,
   onTitleClickRelease,
   onTitleClickPress,
-  onTileLeave
+  onTileLeave,
+  onTileEnter
 }: TileProps): JSX.Element {
   const [tileImg, setTileImg] = useState<string>();
+  
   useEffect(()=>{
     let tileImg;
     if (tileData.hidden) {
-      if (!tileData.marked) tileImg = hidden_normal;
-      if (tileData.marked === 'mined') tileImg = hidden_marked_mined;
-      if (tileData.marked === 'questionMark') tileImg = hidden_marked_question_mark;
+      if (!tileData.marked) tileImg = isPressed ? showing_empty : hidden_normal;
+      if (tileData.marked === 'mined') {
+        if (roundFinished && !tileData.mined) tileImg = showing_empty_incorrectly_marked;
+        else tileImg = hidden_marked_mined;
+      }
+      if (tileData.marked === 'questionMark') tileImg = isPressed ? hidden_marked_question_mark_pressed : hidden_marked_question_mark;
     } else if (!tileData.hidden) {
       if (tileData.mined) tileImg = showing_mined_normal;
       if (tileData.mined && tileData.mineExploded) tileImg = showing_mined_exploded;
@@ -56,13 +68,14 @@ export function Tile({
       if (!tileData.mined && tileData.minedNeighborCount) tileImg = tileNumbsImgs[tileData.minedNeighborCount];
     }
     setTileImg(tileImg)
-  }, [tileData]);
+  }, [tileData, isPressed, roundFinished]);
   
   return <div 
     style={{userSelect: 'none'}}
     className="w-full h-full"
     onMouseDown={(e)=>onTitleClickPress(e, tileData, index)}
     onMouseUp={(e)=>onTitleClickRelease(e, tileData, index)}
+    onMouseEnter={()=>onTileEnter(index)}
     onMouseLeave={()=>onTileLeave()}
     onContextMenu={(e)=>e.preventDefault()} //prevents right click menu from opening 
   >

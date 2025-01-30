@@ -17,10 +17,13 @@ export function MineSweeper(): JSX.Element {
   const [leftButtonIsPressed, setLeftButtonIsPressed] = useState<boolean>(false);
   const [rightButtonIsPressed, setRightButtonIsPressed] = useState<boolean>(false);
   const [tilesMarkedAsMined, setTilesMarkedAsMined] = useState<number>(0);
+  const [mouseHoverOnTileIndex, setMouseHoverOnTileIndex] = useState<number|null>(null);
   const [gridTileCount, setGridTileCount] = useState<number>(25);
   const [minesCount, setGridMinesCount] = useState<number>(2);
   useEffect(()=>{
     resetBoard();
+    document.addEventListener('mouseup', globalMouseClickRelease);
+    return () => document.removeEventListener('mouseup', globalMouseClickRelease);
   }, []);
   useEffect(()=> {
     let allEmptyTilesAreVisible = true; 
@@ -61,11 +64,22 @@ export function MineSweeper(): JSX.Element {
   function onTileClickPress(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
     if (roundFinished) return;
     if (tileData.hidden && event.button === 2) return setRightButtonIsPressed(true);
-    if (tileData.hidden && event.button === 0) return setLeftButtonIsPressed(true);
+    if (tileData.hidden && event.button === 0) {
+      setMouseHoverOnTileIndex(index);
+      return setLeftButtonIsPressed(true);
+    }
+  }
+  //handles when mouse is released out of game bounds
+  function globalMouseClickRelease() {
+    setMouseHoverOnTileIndex(null);
+    setLeftButtonIsPressed(false);
+    setRightButtonIsPressed(false);
   }
   function onTileLeave() {
-    if (leftButtonIsPressed) setLeftButtonIsPressed(false);
-    if (rightButtonIsPressed) setRightButtonIsPressed(false);
+    setMouseHoverOnTileIndex(null);
+  }
+  function onTileEnter(index: number) {
+    setMouseHoverOnTileIndex(index);
   }
   function showTile(tileIndex: number) {
     if (!tilesGraph[tileIndex]?.hidden) return;
@@ -113,9 +127,12 @@ export function MineSweeper(): JSX.Element {
           tileData={tileData} 
           key={key}
           index={parseInt(key)}
+          roundFinished={roundFinished}
           onTitleClickRelease={onTileClickRelease}
           onTitleClickPress={onTileClickPress}
+          onTileEnter={onTileEnter}
           onTileLeave={onTileLeave}
+          isPressed={leftButtonIsPressed && mouseHoverOnTileIndex === parseInt(key)}
         />
       })};
     </div>
