@@ -24,26 +24,24 @@ interface DesktopWindowProps {
 export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimensions, hideHeader}: DesktopWindowProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>()
   const windowNode = useRef(null);
+  const windowsData = useSelector((state: RootState) => state.screen.windowsData);
+  const currentWindowData = useSelector((state: RootState) => state.screen.windowsLayeringOrder.filter(winData=>winData.name === windowName)[0]);
   const [windowIsMaximized, setWindowIsMaximized] = useState<boolean>(false);
-  const defaultWindowDimensions = { width: 800, height: 550 };
-  const [windowDimensions, setWindowDimensions] = useState({ 
-    width: defaultWindowDimensions.width, 
-    height: defaultWindowDimensions.height
-  });
   const [oldWindowPosAfterMaximize, setOldWinPosAfterMaximize] = useState({ x: 0, y: 0});
   const [windowPosition, setWindowPosition] = useState({ 
     x: 300 + (Math.random()*100),
     y: 200 + (Math.random()*50)
   });
-  const windowsData = useSelector((state: RootState) => state.screen.windowsData);
-  const currentWindowData = useSelector((state: RootState) => state.screen.windowsLayeringOrder.filter(winData=>winData.name === windowName)[0]);
   const [visitedWindowNestedRoutes, setNestedRoutes] = useState<string[]>([]);
   const [currentRoute, setCurrentRoute] = useState<string>('');
+  const [windowDimensions, setWindowDimensions] = useState<null|{width: number, height: number}>(null);
 
   useEffect(()=>{
     const nestedRoutesHistory = currentWindowData.nestedRoutesHistory;
+    const currentWinRoute = nestedRoutesHistory[nestedRoutesHistory.length - 1];
     setNestedRoutes(nestedRoutesHistory);
-    setCurrentRoute(nestedRoutesHistory[nestedRoutesHistory.length - 1])
+    setCurrentRoute(currentWinRoute)
+    setWindowDimensions(windowsData[currentWinRoute].windowDimensions)
   }, [currentWindowData]);
   
 
@@ -86,7 +84,9 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       setWindowDimensions({ width: desktopDimensions.width, height: desktopDimensions.height});
     }
     if (windowIsMaximized) {
-      setWindowDimensions({width: defaultWindowDimensions.width, height: defaultWindowDimensions.height});
+      const defaultWindowDimensions = windowsData[currentRoute]?.windowDimensions;
+      if (defaultWindowDimensions)
+        setWindowDimensions({width: defaultWindowDimensions.width, height: defaultWindowDimensions.height});
       setWindowPosition(oldWindowPosAfterMaximize);
     }
     setWindowIsMaximized(!windowIsMaximized);
@@ -97,8 +97,6 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     className="window"
     style={{
       position: 'absolute',
-      width: `${windowDimensions.width}px`,
-      height: `${windowDimensions.height}px`,
       top: `${windowPosition.y}px`,
       left: `${windowPosition.x}px`,
       zIndex: zIndexVal + 1,
@@ -106,11 +104,15 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       display: "grid",
       gridAutoRows: 'auto auto 1fr',
       overflow: 'hidden',
+      ...(windowDimensions ? {width: `${windowDimensions.width}px`,} : {}),
+      ...(windowDimensions ? {height: `${windowDimensions.height}px`} : {}),
       ...(isMinimized ? {display: 'none'} : {})
     }}
   >
       <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar" onMouseDown={handleDragStart}>
-        <div className="title-bar-text">{windowsData[currentRoute]?.text}</div>
+        <div 
+          className="text-white ml-1"
+        >{windowsData[currentRoute]?.text}</div>
         <div className="title-bar-controls">
           <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
           <button onMouseDown={toggleMaximizeWindow} aria-label={`${windowIsMaximized ? 'Restore' : 'Maximize'}`} />

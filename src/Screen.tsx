@@ -9,7 +9,8 @@ export function Screen() {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     display: 'grid',
-    gridTemplateRows: '1fr 35px'
+    gridTemplateRows: '1fr 35px',
+    overflow: 'hidden'
   }}>
     <Desktop />
     <Taskbar />

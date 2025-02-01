@@ -24,29 +24,33 @@ const windowsData: WindowsData = {
     id:2,
     name: 'my_documents',
     text: 'My Documents',
-    nestedRoutesHistory: []
+    nestedRoutesHistory: [],
+    windowDimensions: { width: 800, height: 550 }
   },
 
   recycle_bin: { 
     id:3,
     name: 'recycle_bin',
     text: 'Recycle Bin',
-    nestedRoutesHistory: []
+    nestedRoutesHistory: [],
+    windowDimensions: { width: 800, height: 550 }
   },
   personal_projects: { 
     id:3,
     name: 'personal_projects',
     text: 'Personal projects',
-    nestedRoutesHistory: []
+    nestedRoutesHistory: [],
+    windowDimensions: { width: 800, height: 550 }
   },
   minesweeper: { 
     id:4,
     name: 'minesweeper',
     text: 'Minesweeper',
     nestedRoutesHistory: [],
-    hideWindowHeader: true
+    hideWindowHeader: true,
+    windowDimensions: null
   }
-}
+} //TO DO: OPTION TO DISABLE FULL SCREEN FOR WINDOW
 
 const initialScreenState: ScreenState = {
   windowsLayeringOrder: [

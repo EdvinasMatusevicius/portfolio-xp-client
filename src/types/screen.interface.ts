@@ -6,8 +6,9 @@ export interface WindowLayeringOrderDataObj {
   name: string,
   text: string,
   nestedRoutesHistory: string[]
+  windowDimensions: null | {width: number, height: number}
   isMinimized?: boolean,
-  hideWindowHeader?: boolean
+  hideWindowHeader?: boolean,
 }
 export interface WindowsData {
   [key: string]: WindowLayeringOrderDataObj

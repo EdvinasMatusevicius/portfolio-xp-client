@@ -26,7 +26,7 @@ export function SmileyFace({roundFinished, hasWon, leftBtnIsPressed, onSmileyCli
     setImage(smiley_happy_unpressed);
   },[roundFinished, hasWon, leftBtnIsPressed, smileyIsPressed]);
   return <div 
-    className="w-full h-full flex justify-center"
+    className="flex justify-center"
     onClick={onSmileyClick}
     onMouseDown={()=>setSmileyIsPressed(true)}
     onMouseUp={()=>setSmileyIsPressed(false)}
