@@ -1,14 +1,13 @@
 import { TileData, TilesGraph } from "../../../../types";
 
 
-export function buildGridGraph(numbOfTiles: number) {
+export function buildGridGraph(width: number, height: number) {
   
-  const gridSize = Math.ceil(Math.sqrt(numbOfTiles));
   const graph: TilesGraph = {};
-  const getIndex = (row: number, col: number) => row * gridSize + col;
+  const getIndex = (row: number, col: number) => row * width + col;
 
-  for (let row = 0; row < gridSize; row++) {
-    for (let col = 0; col < gridSize; col++) {
+  for (let row = 0; row < height; row++) {
+    for (let col = 0; col < width; col++) {
       const currentIndex = getIndex(row, col);
 
       graph[currentIndex] = {
@@ -39,9 +38,9 @@ export function buildGridGraph(numbOfTiles: number) {
         // Check if the neighbor is within the grid bounds
         if (
           neighborRow >= 0 &&
-          neighborRow < gridSize &&
+          neighborRow < height &&
           neighborCol >= 0 &&
-          neighborCol < gridSize
+          neighborCol < width
         ) {
           const neighborIndex = getIndex(neighborRow, neighborCol);
           graph[currentIndex].neighbors.push(neighborIndex);

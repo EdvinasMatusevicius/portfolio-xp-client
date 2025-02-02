@@ -8,7 +8,7 @@ import { buildGridGraph,
 } from './Minesweeper/helperFunctions';
 import { SmileyFace } from './Minesweeper/SmileyFace';
 import { Tile } from './Minesweeper/Tile';
-import { NumberLEDBoard } from './Minesweeper/numberLEDBoard';
+import { NumberLEDBoard } from './Minesweeper/NumberLEDBoard';
 
 export function MineSweeper(): JSX.Element {
 
@@ -19,8 +19,8 @@ export function MineSweeper(): JSX.Element {
   const [rightButtonIsPressed, setRightButtonIsPressed] = useState<boolean>(false);
   const [tilesMarkedAsMined, setTilesMarkedAsMined] = useState<number>(0);
   const [mouseHoverOnTileIndex, setMouseHoverOnTileIndex] = useState<number|null>(null);
-  const [gridTileCount, setGridTileCount] = useState<number>(100);
-  const [minesCount, setGridMinesCount] = useState<number>(20);
+  const [gridDimensions, setGridDimensions] = useState<{width: number, height: number}>({width: 5, height: 10});
+  const [minesCount, setGridMinesCount] = useState<number>(25);
   const [timeOnFirstTileClick, setTimeOnFirstTileClick] = useState<number|null>(null);
   const [currentTime, setCurrentTime] = useState<number|null>(null);
   const [timerInterval, setTimerInterval] = useState<number>(0);
@@ -51,9 +51,9 @@ export function MineSweeper(): JSX.Element {
     setTilesMarkedAsMined(minesMarked);
   }, [tilesGraph]);
 
-  function buildFullGridGraph(tilesCount: number, minesCunt: number) {
-    const graph = buildGridGraph(tilesCount);
-    populateEmptyWithMines(graph, minesCunt);
+  function buildFullGridGraph() {
+    const graph = buildGridGraph(gridDimensions.width, gridDimensions.height);
+    populateEmptyWithMines(graph, minesCount);
     populateGraphWithNumbers(graph);
     return graph;
   }
@@ -105,7 +105,7 @@ export function MineSweeper(): JSX.Element {
     endTimer();
     setHasWon(false);
     setRoundFinished(false);
-    const builtGridGraph = buildFullGridGraph(gridTileCount, minesCount);
+    const builtGridGraph = buildFullGridGraph();
     setTileGraph(builtGridGraph);
   }
 
@@ -126,8 +126,8 @@ export function MineSweeper(): JSX.Element {
 
   const shortcutsWrapperStyles = {
     display: 'grid',
-    gridTemplateColumns: `repeat(${Math.sqrt(Object.keys(tilesGraph).length)}, 1.5rem)`,
-    gridTemplateRows: `repeat(${Math.sqrt(Object.keys(tilesGraph).length)}, 1.5rem)`,
+    gridTemplateColumns: `repeat(${gridDimensions.width}, 1.5rem)`,
+    gridTemplateRows: `repeat(${gridDimensions.height}, 1.5rem)`,
     margin: '0.5rem',
     border: '3px inset',
   } as CSSProperties;
