@@ -9,27 +9,38 @@ import { buildGridGraph,
 import { SmileyFace } from './Minesweeper/SmileyFace';
 import { Tile } from './Minesweeper/Tile';
 import { NumberLEDBoard } from './Minesweeper/NumberLEDBoard';
+import { OptionsBar } from './Minesweeper/OptionsBar';
+import { DifficultyPreset } from '../../../types/minesweeper.interface';
+const difficultyPresets: {[presetName: string]: DifficultyPreset} = {
+  'Beginner': {width: 10, height: 10, mines:10},
+  'Intermediate': {width: 15, height: 15, mines:20},
+  'Expert': {width: 20, height: 20, mines:30}
+}
 
 export function MineSweeper(): JSX.Element {
 
   const [tilesGraph, setTileGraph] = useState<{[index: string]: TileData}>({});
+  const [currentDifficulty, setCurrentDifficulty] = useState<string>(Object.keys(difficultyPresets)[0]);
   const [hasWon, setHasWon] = useState<boolean>(false);
   const [roundFinished, setRoundFinished] = useState<boolean>(false);
   const [leftButtonIsPressed, setLeftButtonIsPressed] = useState<boolean>(false);
   const [rightButtonIsPressed, setRightButtonIsPressed] = useState<boolean>(false);
   const [tilesMarkedAsMined, setTilesMarkedAsMined] = useState<number>(0);
   const [mouseHoverOnTileIndex, setMouseHoverOnTileIndex] = useState<number|null>(null);
-  const [gridDimensions, setGridDimensions] = useState<{width: number, height: number}>({width: 5, height: 10});
-  const [minesCount, setGridMinesCount] = useState<number>(25);
+  const [gridDimensions, setGridDimensions] = useState<{width: number, height: number}>({width: 0, height: 0});
+  const [minesCount, setGridMinesCount] = useState<number>(1);
   const [timeOnFirstTileClick, setTimeOnFirstTileClick] = useState<number|null>(null);
-  const [currentTime, setCurrentTime] = useState<number|null>(null);
+  const [currentTime, setCurrentTime] = useState<number>(0);
   const [timerInterval, setTimerInterval] = useState<number>(0);
   
   useEffect(()=>{
-    resetBoard();
+    selectGameDifficulty(currentDifficulty);
     document.addEventListener('mouseup', globalMouseClickRelease);
     return () => document.removeEventListener('mouseup', globalMouseClickRelease);
   }, []);
+  useEffect(()=>{
+    resetBoard();
+  }, [currentDifficulty, gridDimensions, minesCount]);
   useEffect(()=> {
     let allEmptyTilesAreVisible = true; 
     let minesMarked = 0;
@@ -50,7 +61,6 @@ export function MineSweeper(): JSX.Element {
     }
     setTilesMarkedAsMined(minesMarked);
   }, [tilesGraph]);
-
   function buildFullGridGraph() {
     const graph = buildGridGraph(gridDimensions.width, gridDimensions.height);
     populateEmptyWithMines(graph, minesCount);
@@ -121,7 +131,14 @@ export function MineSweeper(): JSX.Element {
   function endTimer() {
     if (timerInterval) clearInterval(timerInterval);
     setTimeOnFirstTileClick(null);
-    setCurrentTime(null);
+    setCurrentTime(0);
+  }
+  function selectGameDifficulty(difficultyName: string, customArgs?: DifficultyPreset) {
+    const difficultyArgs: DifficultyPreset | undefined = difficultyName === 'custom' ? customArgs : difficultyPresets[difficultyName];
+    if (!difficultyArgs) return console.log('invalid difficulty name'); 
+    setCurrentDifficulty(difficultyName);
+    setGridDimensions({width: difficultyArgs.width, height: difficultyArgs.height});
+    setGridMinesCount(difficultyArgs.mines);
   }
 
   const shortcutsWrapperStyles = {
@@ -132,51 +149,60 @@ export function MineSweeper(): JSX.Element {
     border: '3px inset',
   } as CSSProperties;
 
-  return <div style={{
-    userSelect: 'none',
-    border: '3px outset',
-    padding: '5px',
-    backgroundColor: '#c0c0c0'
-  }}>
-    {/* smiley */}
-    <div 
-      className='flex justify-around'
-      style={{
-        border: '3px inset',
-        backgroundColor: '#c0c0c0',
-        margin: '0.5rem',
-        padding: '0.3rem'
-      }}
-    >
-      <NumberLEDBoard number={minesCount - tilesMarkedAsMined}/>
-      <SmileyFace 
-        onSmileyClick={resetBoard}
-        roundFinished={roundFinished}
-        hasWon={hasWon}
-        leftBtnIsPressed={leftButtonIsPressed}
-      />
-      <NumberLEDBoard number={
-        timeOnFirstTileClick ?
-          Math.round((currentTime - timeOnFirstTileClick) / 1000) :
-          0
-        }/>
-    </div>
-
-    {/* tile grid */}
-    <div style={{...shortcutsWrapperStyles}}>
-      {Object.entries(tilesGraph).map(([key, tileData])=>{
-        return <Tile 
-          tileData={tileData} 
-          key={key}
-          index={parseInt(key)}
+  return <div>
+    <OptionsBar 
+      currentDifficulty={currentDifficulty}
+      resetBoard={resetBoard}
+      setDifficulty={selectGameDifficulty}
+    />
+    <div style={{
+      userSelect: 'none',
+      border: '3px outset',
+      padding: '5px',
+      backgroundColor: '#c0c0c0'
+    }}>
+      {/* smiley */}
+      <div 
+        className='flex justify-around'
+        style={{
+          border: '3px inset',
+          backgroundColor: '#c0c0c0',
+          margin: '0.5rem',
+          padding: '0.3rem'
+        }}
+      >
+        <NumberLEDBoard number={minesCount - tilesMarkedAsMined}/>
+        <SmileyFace 
+          onSmileyClick={resetBoard}
           roundFinished={roundFinished}
-          onTitleClickRelease={onTileClickRelease}
-          onTitleClickPress={onTileClickPress}
-          onTileEnter={onTileEnter}
-          onTileLeave={onTileLeave}
-          isPressed={leftButtonIsPressed && mouseHoverOnTileIndex === parseInt(key)}
+          hasWon={hasWon}
+          leftBtnIsPressed={leftButtonIsPressed}
         />
-      })}
+        <NumberLEDBoard number={
+          timeOnFirstTileClick ?
+            Math.round((currentTime - timeOnFirstTileClick) / 1000) :
+            0
+          }/>
+      </div>
+
+      {/* tile grid */}
+      <div className='flex justify-center'>
+        <div style={{...shortcutsWrapperStyles}}>
+          {Object.entries(tilesGraph).map(([key, tileData])=>{
+            return <Tile 
+              tileData={tileData} 
+              key={key}
+              index={parseInt(key)}
+              roundFinished={roundFinished}
+              onTitleClickRelease={onTileClickRelease}
+              onTitleClickPress={onTileClickPress}
+              onTileEnter={onTileEnter}
+              onTileLeave={onTileLeave}
+              isPressed={leftButtonIsPressed && mouseHoverOnTileIndex === parseInt(key)}
+            />
+          })}
+        </div>
+      </div>
     </div>
   </div>
 }

@@ -1,5 +1,27 @@
-.minesweeper_grid{
+.options_bar_tab{
+  height: 100%;
+  display: inline-block;
+  padding: 0.15rem 0.3rem;
+  user-select: none;
+  position: relative;
+}
+.options_bar_tab:hover{
+  background-color: #1660e8;
+}
+.options_bar_dropdown_wrapper{
+  position: absolute;
+  top: 100%;
+  background-color: white;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+}
+.options_bar_dropdown_btn{
+  width: 6rem;
+  height: 1.5rem;
+  margin: 0 0.2rem;
   display: grid;
-  background-color: green;
-  grid
+  grid-template-columns: 1rem 1fr;
+  user-select: none;
+}
+.options_bar_dropdown_btn:hover{
+  background-color: #1660e8;
 }

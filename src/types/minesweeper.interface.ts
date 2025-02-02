@@ -9,3 +9,8 @@ export interface TileData {
 export interface TilesGraph {
   [index: string]: TileData
 }
+export interface DifficultyPreset{
+  width: number,
+  height: number,
+  mines: number
+}
