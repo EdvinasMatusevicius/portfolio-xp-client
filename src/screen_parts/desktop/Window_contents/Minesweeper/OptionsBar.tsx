@@ -78,7 +78,10 @@ export function OptionsBar({
       </div>
     </div>
     {customConfWindowOpen && (
-      <OptionsBarCustomConfWindow setIsWindowOpen={setCustomConfWindowState} />
+      <OptionsBarCustomConfWindow 
+        setIsWindowOpen={setCustomConfWindowState}
+        setDifficulty={setDifficulty}
+      />
     )}
   </div>
 }

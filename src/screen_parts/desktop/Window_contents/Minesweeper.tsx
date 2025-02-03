@@ -12,7 +12,7 @@ import { NumberLEDBoard } from './Minesweeper/NumberLEDBoard';
 import { OptionsBar } from './Minesweeper/OptionsBar';
 import { DifficultyPreset } from '../../../types/minesweeper.interface';
 const difficultyPresets: {[presetName: string]: DifficultyPreset} = {
-  'Beginner': {width: 1, height: 1, mines:1},
+  'Beginner': {width: 10, height: 10, mines:10},
   'Intermediate': {width: 15, height: 15, mines:20},
   'Expert': {width: 20, height: 20, mines:30}
 }
@@ -136,9 +136,14 @@ export function MineSweeper(): JSX.Element {
   function selectGameDifficulty(difficultyName: string, customArgs?: DifficultyPreset) {
     const difficultyArgs: DifficultyPreset | undefined = difficultyName === 'custom' ? customArgs : difficultyPresets[difficultyName];
     if (!difficultyArgs) return console.log('invalid difficulty name'); 
+    const maxEdgeLength = 100;
+    const width = difficultyArgs.width > maxEdgeLength ? maxEdgeLength : difficultyArgs.width;
+    const height = difficultyArgs.height > maxEdgeLength ? maxEdgeLength : difficultyArgs.height;
+    const totalTiles = width * height;
+    const mines = difficultyArgs.mines >= totalTiles ? totalTiles - 1 : difficultyArgs.mines;
     setCurrentDifficulty(difficultyName);
-    setGridDimensions({width: difficultyArgs.width, height: difficultyArgs.height});
-    setGridMinesCount(difficultyArgs.mines);
+    setGridDimensions({width, height});
+    setGridMinesCount(mines);
   }
 
   const shortcutsWrapperStyles = {
@@ -146,7 +151,7 @@ export function MineSweeper(): JSX.Element {
     gridTemplateColumns: `repeat(${gridDimensions.width}, 1.5rem)`,
     gridTemplateRows: `repeat(${gridDimensions.height}, 1.5rem)`,
     margin: '0.5rem',
-    border: '3px inset',
+    border: '3px inset white'
   } as CSSProperties;
 
   return <div>
@@ -157,7 +162,7 @@ export function MineSweeper(): JSX.Element {
     />
     <div style={{
       userSelect: 'none',
-      border: '3px outset',
+      border: '3px inset white',
       padding: '5px',
       backgroundColor: '#c0c0c0'
     }}>
@@ -165,7 +170,7 @@ export function MineSweeper(): JSX.Element {
       <div 
         className='flex justify-around'
         style={{
-          border: '3px inset',
+          border: '3px inset white',
           backgroundColor: '#c0c0c0',
           margin: '0.5rem',
           padding: '0.3rem'
