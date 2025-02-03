@@ -2,6 +2,8 @@ import { About } from "./Window_contents/About";
 import { MyDocuments } from "./Window_contents/My_documents";
 import { PersonalProjects } from "./Window_contents/Personal_projects";
 import { MineSweeper } from "./Window_contents/MineSweeper";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 
 interface WindowContentsProps {
   windowName: string,
@@ -9,9 +11,21 @@ interface WindowContentsProps {
   windowIsMaximized: boolean
 }
 export function WindowContent({windowName, currentRoute, windowIsMaximized}: WindowContentsProps): JSX.Element {
+  const windowsData = useSelector((state: RootState) => state.screen.windowsData);
+
   //padding so that blue outline of window would be visible
-  return <div style={{width: '100%', height: '100%', padding: '0 3px 0 3px',overflow: 'hidden',}}>
-    <div style={{width: '100%', height: '100%', overflowY: 'auto'}}>
+  return <div style={{
+    width: '100%', 
+    height: '100%', 
+    padding: '0 3px 0 3px',
+    ...(windowsData[currentRoute]?.usesScrollbar ? {overflow: 'hidden',} : {}),
+
+  }}>
+    <div style={{
+      width: '100%',
+      height: '100%',
+      ...(windowsData[currentRoute]?.usesScrollbar ? {overflowY: 'auto',} : {})
+    }}>
       {currentRoute === 'about' ? <About/> : null}
       {currentRoute === 'my_documents' ? <MyDocuments windowName={windowName} /> : null}
       {currentRoute === 'personal_projects' ? <PersonalProjects windowIsMaximized={windowIsMaximized} /> : null}

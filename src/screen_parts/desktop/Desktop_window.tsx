@@ -9,7 +9,6 @@ import { WindowHeader } from "./Window_header";
 import { WindowContent } from "./Window_content";
 import "xp.css/dist/XP.css";
 
-// import video from '../../assets/videos/darboBaze.mp4'
 
 
 interface DesktopWindowProps {
@@ -103,7 +102,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       backgroundColor: "#edead7",
       display: "grid",
       gridAutoRows: 'auto auto 1fr',
-      overflow: 'hidden',
+      ...(windowsData[currentRoute]?.usesScrollbar ? {overflow: 'hidden',} : {}),
       ...(windowDimensions ? {width: `${windowDimensions.width}px`,} : {}),
       ...(windowDimensions ? {height: `${windowDimensions.height}px`} : {}),
       ...(isMinimized ? {display: 'none'} : {})

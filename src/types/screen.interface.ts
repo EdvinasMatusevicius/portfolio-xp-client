@@ -7,6 +7,7 @@ export interface WindowLayeringOrderDataObj {
   text: string,
   nestedRoutesHistory: string[]
   windowDimensions: null | {width: number, height: number}
+  usesScrollbar: boolean
   isMinimized?: boolean,
   hideWindowHeader?: boolean,
 }

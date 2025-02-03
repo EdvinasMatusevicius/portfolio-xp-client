@@ -12,7 +12,7 @@ import { NumberLEDBoard } from './Minesweeper/NumberLEDBoard';
 import { OptionsBar } from './Minesweeper/OptionsBar';
 import { DifficultyPreset } from '../../../types/minesweeper.interface';
 const difficultyPresets: {[presetName: string]: DifficultyPreset} = {
-  'Beginner': {width: 10, height: 10, mines:10},
+  'Beginner': {width: 1, height: 1, mines:1},
   'Intermediate': {width: 15, height: 15, mines:20},
   'Expert': {width: 20, height: 20, mines:30}
 }

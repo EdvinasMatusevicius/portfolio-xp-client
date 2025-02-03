@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DifficultyPreset } from '../../../../types/minesweeper.interface';
 import styles from './Minesweeper.module.css';
+import { OptionsBarCustomConfWindow } from './OptionsBarCustomConfWindow';
 
 
 interface OptionsBarProps{
@@ -17,6 +18,11 @@ export function OptionsBar({
   
   const predefinedDifficulties = ['Beginner','Intermediate','Expert'];
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [customConfWindowOpen, setCustomConfWindowOpen] = useState<boolean>(false);
+  function setCustomConfWindowState(isOpen: boolean) {
+    if (isOpen) setDropdownOpen(false);
+    setCustomConfWindowOpen(isOpen);
+  }
   return <div style={{
     width: '100%',
     backgroundColor: '#ece9d8',
@@ -38,8 +44,10 @@ export function OptionsBar({
         className={styles.options_bar_dropdown_btn}
         onClick={resetBoard}
       >
-        <div></div>
-        <div className='h-full flex items-center'>New</div>
+        <div className='border-b border-grey-500'></div>
+        <div className='h-full flex items-center border-b border-grey-500'>
+          New
+        </div>
       </div>
       {
         predefinedDifficulties.map((difficulty, i)=>{
@@ -59,6 +67,18 @@ export function OptionsBar({
           </div>
         })
       }
+      <div 
+        className={styles.options_bar_dropdown_btn}
+        onClick={()=>setCustomConfWindowState(true)}
+      >
+        <div className='border-t border-grey-500'></div>
+        <div className='h-full flex items-center border-t border-grey-500'>
+          Custom
+        </div>
+      </div>
     </div>
+    {customConfWindowOpen && (
+      <OptionsBarCustomConfWindow setIsWindowOpen={setCustomConfWindowState} />
+    )}
   </div>
 }

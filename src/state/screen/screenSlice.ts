@@ -17,30 +17,33 @@ const windowsData: WindowsData = {
       id:1,
       name: 'about',
       text: 'About',
-      nestedRoutesHistory: []
+      nestedRoutesHistory: [],
+      windowDimensions: { width: 800, height: 550 },
+      usesScrollbar: true
     },
-
   my_documents: { 
     id:2,
     name: 'my_documents',
     text: 'My Documents',
     nestedRoutesHistory: [],
-    windowDimensions: { width: 800, height: 550 }
+    windowDimensions: { width: 800, height: 550 },
+    usesScrollbar: false
   },
-
   recycle_bin: { 
     id:3,
     name: 'recycle_bin',
     text: 'Recycle Bin',
     nestedRoutesHistory: [],
-    windowDimensions: { width: 800, height: 550 }
+    windowDimensions: { width: 800, height: 550 },
+    usesScrollbar: false
   },
   personal_projects: { 
     id:3,
     name: 'personal_projects',
     text: 'Personal projects',
     nestedRoutesHistory: [],
-    windowDimensions: { width: 800, height: 550 }
+    windowDimensions: { width: 800, height: 550 },
+    usesScrollbar: true
   },
   minesweeper: { 
     id:4,
@@ -48,7 +51,8 @@ const windowsData: WindowsData = {
     text: 'Minesweeper',
     nestedRoutesHistory: [],
     hideWindowHeader: true,
-    windowDimensions: null
+    windowDimensions: null,
+    usesScrollbar: false
   }
 } //TO DO: OPTION TO DISABLE FULL SCREEN FOR WINDOW
 
