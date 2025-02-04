@@ -7,28 +7,31 @@
     "gitLinks": [
       {"link": "https://github.com/EdvinasMatusevicius/serverpiVUE", "text":"front-end"},
       {"link": "https://github.com/EdvinasMatusevicius/serverpi", "text":"back-end"}
-    ]
+    ],
+    "backgroundColor": "#4d96b2"
   },
   "basicRPG":{
     "title": "BasicRPG",
     "techUsed":["html", "js", "mysql", "ps"],
     "mediaCarousel": "basicRPG",
     "description": "A game with pixel graphics that have most of rpg game components such as classes with different stats,leveling up, turn based combat,items with ability to save your character progress",
-    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/basicRPG"}]
+    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/basicRPG"}],
+    "backgroundColor": "#5fae4d"
   },
   "basicChat":{
     "title": "Basic chat",
     "techUsed":["html","css","js","node","mongodb"],
     "mediaCarousel": "basicChat",
     "description": "Basic chat room where registered users and guests can communicate.",
-    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/Basic-chat"}]
+    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/Basic-chat"}],
+    "backgroundColor": "#80da6c"
   },
   "darboBaze":{
     "title": "Darbo bazė",
     "techUsed":["html","sass","js","node","mongodb"],
     "mediaCarousel": "darboBaze",
     "description": "Job search website that scrapes job posting websites for jobs fitting set criteria.",
-    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/darbo-baze"}]
-
+    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/darbo-baze"}],
+    "backgroundColor": "#64d0ff"
   }
 }

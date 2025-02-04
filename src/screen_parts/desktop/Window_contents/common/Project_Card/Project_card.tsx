@@ -13,14 +13,14 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
   const projectData = cardData[projectName];
 
 
-  return <div className={`${styles.project_card_wrapper}`}>
+  return <div className={`${styles.project_card_wrapper}`} style={{backgroundColor: projectData.backgroundColor}}>
     <div className='flex justify-between'>
       <div className='flex items-end justify-start h-full'>
         <b className={`${styles.title} whitespace-nowrap`}>{projectData.title}</b>
         {projectData.techUsed.map(
           (techName, i)=>{
             const imgSrc = techIcons[`/src/assets/images/tech_icons/${techName}.svg`]?.default;
-            return <img src={imgSrc} key={i} style={{maxHeight: '60%', margin: '2px'}}></img>
+            return <img src={imgSrc} key={i} style={{maxHeight: '68%', margin: '2px'}}></img>
           }
         )}
       </div>
