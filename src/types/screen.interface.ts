@@ -10,6 +10,7 @@ export interface WindowLayeringOrderDataObj {
   usesScrollbar: boolean
   isMinimized?: boolean,
   hideWindowHeader?: boolean,
+  disableFullScreen?: boolean
 }
 export interface WindowsData {
   [key: string]: WindowLayeringOrderDataObj

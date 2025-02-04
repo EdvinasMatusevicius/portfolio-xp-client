@@ -114,7 +114,11 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
         >{windowsData[currentRoute]?.text}</div>
         <div className="title-bar-controls">
           <button onMouseDown={handleMinimizeWindow} aria-label="Minimize" />
-          <button onMouseDown={toggleMaximizeWindow} aria-label={`${windowIsMaximized ? 'Restore' : 'Maximize'}`} />
+          {
+            !windowsData[currentRoute]?.disableFullScreen && (
+              <button onMouseDown={toggleMaximizeWindow} aria-label={`${windowIsMaximized ? 'Restore' : 'Maximize'}`} />
+            )
+          }
           <button onMouseDown={handleCloseWindow} aria-label="Close" />
         </div>
       </div>

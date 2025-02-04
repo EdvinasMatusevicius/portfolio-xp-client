@@ -52,9 +52,10 @@ const windowsData: WindowsData = {
     nestedRoutesHistory: [],
     hideWindowHeader: true,
     windowDimensions: null,
-    usesScrollbar: false
+    usesScrollbar: false,
+    disableFullScreen: true
   }
-} //TO DO: OPTION TO DISABLE FULL SCREEN FOR WINDOW
+}
 
 const initialScreenState: ScreenState = {
   windowsLayeringOrder: [
