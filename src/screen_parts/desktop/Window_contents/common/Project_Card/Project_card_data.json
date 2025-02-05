@@ -39,7 +39,7 @@
     "techUsed":["vue"],
     "mediaCarousel": "oldPortfolio",
     "description": "Portfolio modeled after Visual studio code.",
-    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/darbo-baze"}],
+    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/serverpiVUE"}],
     "backgroundColor": "#4f4f4f"
   }
 }
