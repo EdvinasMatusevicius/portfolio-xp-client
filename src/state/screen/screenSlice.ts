@@ -35,7 +35,7 @@ const windowsData: WindowsData = {
     text: 'Recycle Bin',
     nestedRoutesHistory: [],
     windowDimensions: { width: 800, height: 550 },
-    usesScrollbar: false
+    usesScrollbar: true
   },
   personal_projects: { 
     id:3,

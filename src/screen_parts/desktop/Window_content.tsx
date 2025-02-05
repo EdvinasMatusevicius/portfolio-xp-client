@@ -4,6 +4,7 @@ import { PersonalProjects } from "./Window_contents/Personal_projects";
 import { MineSweeper } from "./Window_contents/MineSweeper";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
+import { RecycleBin } from "./Window_contents/RecycleBin";
 
 interface WindowContentsProps {
   windowName: string,
@@ -29,6 +30,7 @@ export function WindowContent({windowName, currentRoute, windowIsMaximized}: Win
       {currentRoute === 'about' ? <About/> : null}
       {currentRoute === 'my_documents' ? <MyDocuments windowName={windowName} /> : null}
       {currentRoute === 'personal_projects' ? <PersonalProjects windowIsMaximized={windowIsMaximized} /> : null}
+      {currentRoute === 'recycle_bin' ? <RecycleBin  windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'minesweeper' ? <MineSweeper /> : null}
     </div>
   </div>

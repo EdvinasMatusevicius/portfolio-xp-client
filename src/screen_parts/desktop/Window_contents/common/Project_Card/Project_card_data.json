@@ -33,5 +33,13 @@
     "description": "Job search website that scrapes job posting websites for jobs fitting set criteria.",
     "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/darbo-baze"}],
     "backgroundColor": "#64d0ff"
+  },
+  "oldPortfolio":{
+    "title": "Old portfolio",
+    "techUsed":["vue"],
+    "mediaCarousel": "oldPortfolio",
+    "description": "Portfolio modeled after Visual studio code.",
+    "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/darbo-baze"}],
+    "backgroundColor": "#4f4f4f"
   }
 }
