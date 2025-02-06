@@ -136,7 +136,7 @@ export function MineSweeper(): JSX.Element {
   function selectGameDifficulty(difficultyName: string, customArgs?: DifficultyPreset) {
     const difficultyArgs: DifficultyPreset | undefined = difficultyName === 'custom' ? customArgs : difficultyPresets[difficultyName];
     if (!difficultyArgs) return console.log('invalid difficulty name'); 
-    const maxEdgeLength = 100;
+    const maxEdgeLength = 80;
     const width = difficultyArgs.width > maxEdgeLength ? maxEdgeLength : difficultyArgs.width;
     const height = difficultyArgs.height > maxEdgeLength ? maxEdgeLength : difficultyArgs.height;
     const totalTiles = width * height;

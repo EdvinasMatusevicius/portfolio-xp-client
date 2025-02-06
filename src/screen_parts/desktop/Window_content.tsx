@@ -5,6 +5,7 @@ import { MineSweeper } from "./Window_contents/MineSweeper";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { RecycleBin } from "./Window_contents/RecycleBin";
+import { MediaPlayer } from './Window_contents/Media_player';
 
 interface WindowContentsProps {
   windowName: string,
@@ -32,6 +33,7 @@ export function WindowContent({windowName, currentRoute, windowIsMaximized}: Win
       {currentRoute === 'personal_projects' ? <PersonalProjects windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'recycle_bin' ? <RecycleBin  windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'minesweeper' ? <MineSweeper /> : null}
+      {currentRoute === 'media_player' ? <MediaPlayer /> : null}
     </div>
   </div>
 }

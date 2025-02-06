@@ -7,7 +7,9 @@ import { DesktopDimensionsData } from '../types/index';
 
 export function Desktop() {
   const backgroundSquarePx = 100;
-  const [shortcuts, setShortcuts] = useState<(string | null)[]>(['about', 'my_documents', 'recycle_bin', 'minesweeper']); //personal project, work stuff and cv can go to docs
+  const [shortcuts, setShortcuts] = useState<(string | null)[]>([
+    'about', 'my_documents', 'recycle_bin', 'minesweeper','media_player'
+  ]); //personal project, work stuff and cv can go to docs
   const [draggedItemId, setDraggedItemId] = useState<number>(0);
   const [desktopDimensions, setDesktopDimensions] = useState<DesktopDimensionsData>({width: 0, height: 0});
   const openWindows = useSelector((state: RootState) => state.screen.windowsLayeringOrder);

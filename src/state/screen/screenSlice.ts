@@ -38,7 +38,7 @@ const windowsData: WindowsData = {
     usesScrollbar: true
   },
   personal_projects: { 
-    id:3,
+    id:4,
     name: 'personal_projects',
     text: 'Personal projects',
     nestedRoutesHistory: [],
@@ -46,7 +46,7 @@ const windowsData: WindowsData = {
     usesScrollbar: true
   },
   minesweeper: { 
-    id:4,
+    id:5,
     name: 'minesweeper',
     text: 'Minesweeper',
     nestedRoutesHistory: [],
@@ -54,6 +54,15 @@ const windowsData: WindowsData = {
     windowDimensions: null,
     usesScrollbar: false,
     disableFullScreen: true
+  },
+  media_player: { 
+    id:6,
+    name: 'media_player',
+    text: 'Media player',
+    nestedRoutesHistory: [],
+    hideWindowHeader: true,
+    windowDimensions: null,
+    usesScrollbar: false,
   }
 }
 
