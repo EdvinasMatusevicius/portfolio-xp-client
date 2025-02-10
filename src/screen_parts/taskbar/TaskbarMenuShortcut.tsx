@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './Taskbar.module.css';
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../state/store";

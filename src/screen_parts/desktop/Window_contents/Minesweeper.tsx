@@ -24,7 +24,7 @@ export function MineSweeper(): JSX.Element {
   const [hasWon, setHasWon] = useState<boolean>(false);
   const [roundFinished, setRoundFinished] = useState<boolean>(false);
   const [leftButtonIsPressed, setLeftButtonIsPressed] = useState<boolean>(false);
-  const [rightButtonIsPressed, setRightButtonIsPressed] = useState<boolean>(false);
+  // const [rightButtonIsPressed, setRightButtonIsPressed] = useState<boolean>(false); //TO D IF NOT NEEDED DELETE COMMENTED OUT INES
   const [tilesMarkedAsMined, setTilesMarkedAsMined] = useState<number>(0);
   const [mouseHoverOnTileIndex, setMouseHoverOnTileIndex] = useState<number|null>(null);
   const [gridDimensions, setGridDimensions] = useState<{width: number, height: number}>({width: 0, height: 0});
@@ -71,7 +71,7 @@ export function MineSweeper(): JSX.Element {
   function onTileClickRelease(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
     if (roundFinished) return;
     if (event.button === 2) {
-      setRightButtonIsPressed(false);
+      // setRightButtonIsPressed(false);
       if (tileData.hidden) return markTile(index);
     }
     if (event.button === 0) {
@@ -82,7 +82,7 @@ export function MineSweeper(): JSX.Element {
   }
   function onTileClickPress(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
     if (roundFinished) return;
-    if (tileData.hidden && event.button === 2) return setRightButtonIsPressed(true);
+    // if (tileData.hidden && event.button === 2) return setRightButtonIsPressed(true);
     if (tileData.hidden && event.button === 0) {
       setMouseHoverOnTileIndex(index);
       return setLeftButtonIsPressed(true);
@@ -92,7 +92,7 @@ export function MineSweeper(): JSX.Element {
   function globalMouseClickRelease() {
     setMouseHoverOnTileIndex(null);
     setLeftButtonIsPressed(false);
-    setRightButtonIsPressed(false);
+    // setRightButtonIsPressed(false);
   }
   function onTileLeave() {
     setMouseHoverOnTileIndex(null);

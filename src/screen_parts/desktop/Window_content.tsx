@@ -1,7 +1,7 @@
 import { About } from "./Window_contents/About";
 import { MyDocuments } from "./Window_contents/My_documents";
 import { PersonalProjects } from "./Window_contents/Personal_projects";
-import { MineSweeper } from "./Window_contents/MineSweeper";
+import { MineSweeper } from "./Window_contents/Minesweeper";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { RecycleBin } from "./Window_contents/RecycleBin";
