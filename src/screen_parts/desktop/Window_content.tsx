@@ -33,7 +33,7 @@ export function WindowContent({windowName, currentRoute, windowIsMaximized}: Win
       {currentRoute === 'personal_projects' ? <PersonalProjects windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'recycle_bin' ? <RecycleBin  windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'minesweeper' ? <MineSweeper /> : null}
-      {currentRoute === 'media_player' ? <MediaPlayer /> : null}
+      {currentRoute === 'media_player' ? <MediaPlayer windowIsMaximized={windowIsMaximized} /> : null}
     </div>
   </div>
 }

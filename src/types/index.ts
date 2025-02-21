@@ -15,3 +15,7 @@ export type {
   TileData,
   TilesGraph
 } from './minesweeper.interface'
+
+export type {
+  Station
+} from './mediaPlayer.interface'

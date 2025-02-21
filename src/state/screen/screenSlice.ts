@@ -61,7 +61,7 @@ const windowsData: WindowsData = {
     text: 'Media player',
     nestedRoutesHistory: [],
     hideWindowHeader: true,
-    windowDimensions: null,
+    windowDimensions: { width: 900, height: 600 },
     usesScrollbar: false,
   }
 }
