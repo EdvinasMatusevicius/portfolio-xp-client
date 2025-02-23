@@ -63,6 +63,15 @@ const windowsData: WindowsData = {
     hideWindowHeader: true,
     windowDimensions: { width: 900, height: 600 },
     usesScrollbar: false,
+  },
+  email: { 
+    id:7,
+    name: 'email',
+    text: 'Email',
+    nestedRoutesHistory: [],
+    hideWindowHeader: true,
+    windowDimensions: { width: 900, height: 600 },
+    usesScrollbar: false,
   }
 }
 

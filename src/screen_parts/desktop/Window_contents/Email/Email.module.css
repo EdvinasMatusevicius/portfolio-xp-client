@@ -1,0 +1,12 @@
+.email_rapper{
+  width: 100%;
+  height: 100%;
+  background-color: "#edead7";
+  display: grid;
+  grid-template-rows: 4rem 1.7rem 1.7rem 1.7rem auto;
+}
+.email_data_line_style{
+  display: grid;
+  grid-template-columns: 5rem auto;
+  padding-right: 1rem;
+}

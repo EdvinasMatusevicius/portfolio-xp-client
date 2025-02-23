@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { RecycleBin } from "./Window_contents/RecycleBin";
 import { MediaPlayer } from './Window_contents/Media_player';
+import { Email } from './Window_contents/EMail';
 
 interface WindowContentsProps {
   windowName: string,
@@ -34,6 +35,7 @@ export function WindowContent({windowName, currentRoute, windowIsMaximized}: Win
       {currentRoute === 'recycle_bin' ? <RecycleBin  windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'minesweeper' ? <MineSweeper /> : null}
       {currentRoute === 'media_player' ? <MediaPlayer windowIsMaximized={windowIsMaximized} /> : null}
+      {currentRoute === 'email' ? <Email /> : null}
     </div>
   </div>
 }
