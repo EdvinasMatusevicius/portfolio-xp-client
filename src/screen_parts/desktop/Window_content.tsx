@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { RecycleBin } from "./Window_contents/RecycleBin";
 import { MediaPlayer } from './Window_contents/Media_player';
-import { Email } from './Window_contents/EMail';
+import { Email } from './Window_contents/Email';
 
 interface WindowContentsProps {
   windowName: string,
