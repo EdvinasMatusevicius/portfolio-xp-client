@@ -1,0 +1,106 @@
+.about_wrapper{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 10% 20% 60% 10%;
+  grid-template-rows: 20% 30% 40% 10%;
+  grid-template-areas: 
+  ". . . ."
+  ". monitor introduction ."
+  ". . introduction ."
+  ". . . linkedin";
+}
+.introduction{
+  color: white;
+  margin-left: 5%;
+  grid-area: introduction;
+  font-size: 1.5rem;
+}
+.monitor_wrapper{
+  grid-area: monitor;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 90% 6% 4%;
+}
+.monitor_bezel{
+  background-color: #a8a8a8;
+  width: 100%;
+  height: 100%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgb(226, 226, 226) rgb(132, 133, 132) rgb(132, 133, 132) rgb(226, 226, 226);
+  box-shadow: rgb(10, 10, 10) 1px 1px 0px 1px;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.monitor_btn{
+  width: 3.5%;
+  height: 2.5%;
+  background-color: rgb(97, 236, 4);
+  border: green solid 1px;
+  position: absolute;
+  right: 5%;
+  bottom: 3%;
+}
+.monitor_stand_pole{
+  background-color: #969696;
+  width: 20%;
+  margin: 0 auto;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(72, 72, 72) rgb(89, 89, 89) #969696 rgb(228, 228, 228);
+}
+.monitor_stand_base{
+  background-color: #969696;
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: rgb(10, 10, 10) 1px 1px 0px 1px;
+  border: medium solid rgb(87, 87, 87);
+}
+.monitor_screen{
+  overflow: hidden;
+  width: 85%;
+  height: 85%;
+  box-shadow: -1px -1px 0px 0px rgba(0,0,0,0.75);
+  position: relative;
+}
+.monitor_screen_loading{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(19, 158, 218);
+  animation: jittery-down 2s steps(5, end) forwards;
+}
+.linkedin_btn{
+  grid-area: linkedin;
+  justify-self: start;
+  align-self: start;
+}
+.linkedin_btn:hover{
+  scale: 1.1;
+}
+
+@keyframes jittery-down {
+  0% {
+    transform: translateY(0%);
+  }
+  20% {
+    transform: translateY(10%);
+  }
+  40% {
+    transform: translateY(20%);
+  }
+  60% {
+    transform: translateY(70%);
+  }
+  80% {
+    transform: translateY(80%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

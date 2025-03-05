@@ -18,8 +18,10 @@ const windowsData: WindowsData = {
       name: 'about',
       text: 'About',
       nestedRoutesHistory: [],
-      windowDimensions: { width: 800, height: 550 },
-      usesScrollbar: true
+      windowDimensions: { width: 900, height: 550 },
+      usesScrollbar: false,
+      hideWindowHeader: true,
+      disableFullScreen: true
     },
   my_documents: { 
     id:2,
@@ -79,10 +81,14 @@ const initialScreenState: ScreenState = {
   windowsLayeringOrder: [
     // {
     //   id: 1,
-    //   name: 'my_documents',
-    //   text: 'test dokumentai',
+    //   name: 'about',
+    //   text: 'About',
     //   isMinimized: false,
-    //   nestedRoutesHistory: ['my_documents']
+    //   nestedRoutesHistory: ['about'],
+    //   hideWindowHeader: true,
+    //   windowDimensions: null,
+    //   usesScrollbar: false,
+    //   disableFullScreen: true
     // }
   ],
   startMenuIsOpen: false,
