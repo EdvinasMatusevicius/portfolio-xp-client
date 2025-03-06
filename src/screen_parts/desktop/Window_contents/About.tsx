@@ -1,5 +1,5 @@
 import styles from './About/About.module.css';
-import pixelIMG from '../../../assets/images/test_img.jpg'
+import pixelIMG from '../../../assets/images/profile.webp'
 import { FaLinkedin } from 'react-icons/fa';
 
 export function About(): JSX.Element {
@@ -17,7 +17,7 @@ export function About(): JSX.Element {
     </div>
     <div className={styles.introduction}>
       Hi, I'm Edvinas Matusevičius a full-stack developer. <br></br>
-      <p style={{fontSize: '1rem'}}>
+      <p style={{fontSize: '1rem', marginTop: '5%'}}>
         I have been fascinated with technology ever since I got to use PC for the first time at my parents job, that was enough to get me hooked.
         Finished college with degree in Interactive media and Digital design and later transitioned to programming.
       </p>
