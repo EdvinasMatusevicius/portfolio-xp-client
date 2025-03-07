@@ -14,5 +14,6 @@ export function MyDocuments({windowName}: {windowName: string}): JSX.Element {
   } as CSSProperties;
   return <div style={{ ...shortcutsWrapperStyles }} >
     <WindowShortcut routeName="personal_projects" text="Personal projects" windowName={windowName}/>
+    <WindowShortcut routeName="other_projects" text="Other projects" windowName={windowName}/>
   </div>
 }

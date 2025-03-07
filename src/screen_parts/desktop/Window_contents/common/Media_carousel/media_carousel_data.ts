@@ -6,6 +6,9 @@ import darboBaze2 from '../../../../../assets/carousel_media_groups/darbo_baze/d
 import serverPi1 from '../../../../../assets/carousel_media_groups/serverPi/serverpi.png';
 import oldPortfolio1 from '../../../../../assets/carousel_media_groups/old_portfolio/oldPortfolio1.png';
 import oldPortfolio2 from '../../../../../assets/carousel_media_groups/old_portfolio/oldPortfolio.mp4';
+import lmk1 from '../../../../../assets/carousel_media_groups/lmk/inventory.png';
+import lmk2 from '../../../../../assets/carousel_media_groups/lmk/police_tablet.png';
+import lmk3 from '../../../../../assets/carousel_media_groups/lmk/videoplayback.mp4';
 
 import { MediaCarouselData } from '../../../../../types';
 
@@ -36,6 +39,13 @@ export const mediaCarouselData: MediaCarouselData = {
     media:[
       {img: oldPortfolio1},
       {vid: oldPortfolio2}
+    ]
+  },
+  lmk:{
+    media:[
+      {img: lmk1},
+      {img: lmk2},
+      {vid: lmk3}
     ]
   }
 }

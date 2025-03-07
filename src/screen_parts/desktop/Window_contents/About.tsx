@@ -1,5 +1,5 @@
 import styles from './About/About.module.css';
-import pixelIMG from '../../../assets/images/profile.webp'
+import pixelIMG from '../../../assets/images/profile.png'
 import { FaLinkedin } from 'react-icons/fa';
 
 export function About(): JSX.Element {

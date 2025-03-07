@@ -28,7 +28,7 @@ const windowsData: WindowsData = {
     name: 'my_documents',
     text: 'My Documents',
     nestedRoutesHistory: [],
-    windowDimensions: { width: 800, height: 550 },
+    windowDimensions: { width: 900, height: 600 },
     usesScrollbar: false
   },
   recycle_bin: { 
@@ -36,7 +36,7 @@ const windowsData: WindowsData = {
     name: 'recycle_bin',
     text: 'Recycle Bin',
     nestedRoutesHistory: [],
-    windowDimensions: { width: 800, height: 550 },
+    windowDimensions: { width: 900, height: 550 },
     usesScrollbar: true
   },
   personal_projects: { 
@@ -44,7 +44,7 @@ const windowsData: WindowsData = {
     name: 'personal_projects',
     text: 'Personal projects',
     nestedRoutesHistory: [],
-    windowDimensions: { width: 800, height: 550 },
+    windowDimensions: { width: 900, height: 600 },
     usesScrollbar: true
   },
   minesweeper: { 
@@ -74,6 +74,14 @@ const windowsData: WindowsData = {
     hideWindowHeader: true,
     windowDimensions: { width: 900, height: 600 },
     usesScrollbar: false,
+  },
+  other_projects: { 
+    id:4,
+    name: 'other_projects',
+    text: 'Other projects',
+    nestedRoutesHistory: [],
+    windowDimensions: { width: 900, height: 600 },
+    usesScrollbar: true
   }
 }
 

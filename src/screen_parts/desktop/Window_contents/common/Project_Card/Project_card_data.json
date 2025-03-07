@@ -41,5 +41,12 @@
     "description": "Portfolio modeled after Visual studio code.",
     "gitLinks": [{"link": "https://github.com/EdvinasMatusevicius/serverpiVUE"}],
     "backgroundColor": "#4f4f4f"
+  },
+  "lmk":{
+    "title": "gtaRP server",
+    "techUsed":["vue","node","mysql"],
+    "mediaCarousel": "lmk",
+    "description": "gtaRP server called 'lasives miesto kronikos.'",
+    "backgroundColor": "#5f55cb"
   }
 }

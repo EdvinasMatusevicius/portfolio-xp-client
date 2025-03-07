@@ -39,8 +39,9 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     const nestedRoutesHistory = currentWindowData.nestedRoutesHistory;
     const currentWinRoute = nestedRoutesHistory[nestedRoutesHistory.length - 1];
     setNestedRoutes(nestedRoutesHistory);
-    setCurrentRoute(currentWinRoute)
-    setWindowDimensions(windowsData[currentWinRoute].windowDimensions)
+    setCurrentRoute(currentWinRoute);
+    if (!windowIsMaximized)
+      setWindowDimensions(windowsData[currentWinRoute].windowDimensions)
   }, [currentWindowData]);
   
 

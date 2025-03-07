@@ -25,19 +25,21 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
         )}
       </div>
       <div className='flex justify-between'>
-        {projectData.gitLinks.map(
-          (gitData, i)=>{
-            return <a 
-              href={gitData.link} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={styles.github_link} key={i}
-            >
-              <img src={githubIcon} alt="github Logo"/>
-              { gitData.text && <span className='whitespace-nowrap'>{gitData.text}</span>}
-            </a>
-          }
-        )}
+        { projectData.gitLinks && projectData.gitLinks?.length > 0 ? (
+          projectData.gitLinks.map(
+            (gitData, i)=>{
+              return <a 
+                href={gitData.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.github_link} key={i}
+              >
+                <img src={githubIcon} alt="github Logo"/>
+                { gitData.text && <span className='whitespace-nowrap'>{gitData.text}</span>}
+              </a>
+            }
+          )) : null
+        }
       </div>
     </div>
     <div className={`${styles.fade_line} mb-3`}></div>

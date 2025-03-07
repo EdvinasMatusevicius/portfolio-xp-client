@@ -7,6 +7,7 @@ import { RootState } from "../../state/store";
 import { RecycleBin } from "./Window_contents/RecycleBin";
 import { MediaPlayer } from './Window_contents/Media_player';
 import { Email } from './Window_contents/Email';
+import { OtherProjects } from "./Window_contents/Other_projects";
 
 interface WindowContentsProps {
   windowName: string,
@@ -32,6 +33,7 @@ export function WindowContent({windowName, currentRoute, windowIsMaximized}: Win
       {currentRoute === 'about' ? <About/> : null}
       {currentRoute === 'my_documents' ? <MyDocuments windowName={windowName} /> : null}
       {currentRoute === 'personal_projects' ? <PersonalProjects windowIsMaximized={windowIsMaximized} /> : null}
+      {currentRoute === 'other_projects' ? <OtherProjects windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'recycle_bin' ? <RecycleBin  windowIsMaximized={windowIsMaximized} /> : null}
       {currentRoute === 'minesweeper' ? <MineSweeper /> : null}
       {currentRoute === 'media_player' ? <MediaPlayer windowIsMaximized={windowIsMaximized} /> : null}
