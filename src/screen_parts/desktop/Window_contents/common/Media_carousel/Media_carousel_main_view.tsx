@@ -1,11 +1,11 @@
-import { MediaItem } from "../../../../../types";
+import { LoadedMediaItem } from "../../../../../types";
 
 interface MainViewProps {
-  mediaItem: MediaItem
+  mediaItem: LoadedMediaItem
 };
 
 export function MediaCarouselMainView({mediaItem}: MainViewProps): JSX.Element | undefined {
-  if (!mediaItem.img && !mediaItem.vid) return <div className="w-full h-full"></div>
+  if (!mediaItem?.img && !mediaItem?.vid) return <div className="w-full h-full"></div>
   if (mediaItem.img) {
     return <img src={mediaItem.img} alt={`Project Photo`} className="w-full h-full object-scale-down" />
   }

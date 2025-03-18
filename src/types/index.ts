@@ -9,6 +9,7 @@ export type {
 } from './screen.interface'
 export type {
   MediaItem,
+  LoadedMediaItem,
   MediaCarouselData
 } from './mediaCarousel.interface'
 export type {

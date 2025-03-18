@@ -1,14 +1,10 @@
 import basicRPG1 from '../../../../../assets/carousel_media_groups/basicRPG/basicRPG.png';
-import basicRPG2 from '../../../../../assets/carousel_media_groups/basicRPG/basicRpgVid.mp4';
 import basicChat1 from '../../../../../assets/carousel_media_groups/basic_chat/basicChat.png';
 import darboBaze1 from '../../../../../assets/carousel_media_groups/darbo_baze/darboBaze.png';
-import darboBaze2 from '../../../../../assets/carousel_media_groups/darbo_baze/darboBaze.mp4';
 import serverPi1 from '../../../../../assets/carousel_media_groups/serverPi/serverpi.png';
 import oldPortfolio1 from '../../../../../assets/carousel_media_groups/old_portfolio/oldPortfolio1.png';
-import oldPortfolio2 from '../../../../../assets/carousel_media_groups/old_portfolio/oldPortfolio.mp4';
 import lmk1 from '../../../../../assets/carousel_media_groups/lmk/inventory.png';
 import lmk2 from '../../../../../assets/carousel_media_groups/lmk/police_tablet.png';
-import lmk3 from '../../../../../assets/carousel_media_groups/lmk/videoplayback.mp4';
 
 import { MediaCarouselData } from '../../../../../types';
 
@@ -16,7 +12,7 @@ export const mediaCarouselData: MediaCarouselData = {
   basicRPG: {
     media:[
       {img: basicRPG1},
-      {vid: basicRPG2}
+      {vid: () => import('../../../../../assets/carousel_media_groups/basicRPG/basicRpgVid.mp4')}
     ]
   },
   basicChat: {
@@ -27,7 +23,7 @@ export const mediaCarouselData: MediaCarouselData = {
   darboBaze: {
     media:[
       {img: darboBaze1},
-      {vid: darboBaze2}
+      {vid: () => import('../../../../../assets/carousel_media_groups/darbo_baze/darboBaze.mp4')}
     ]
   },
   serverPi:{
@@ -38,14 +34,14 @@ export const mediaCarouselData: MediaCarouselData = {
   oldPortfolio:{
     media:[
       {img: oldPortfolio1},
-      {vid: oldPortfolio2}
+      {vid: () => import('../../../../../assets/carousel_media_groups/old_portfolio/oldPortfolio.mp4')}
     ]
   },
   lmk:{
     media:[
       {img: lmk1},
       {img: lmk2},
-      {vid: lmk3}
+      {vid: () => import('../../../../../assets/carousel_media_groups/lmk/videoplayback.mp4')}
     ]
   }
 }
