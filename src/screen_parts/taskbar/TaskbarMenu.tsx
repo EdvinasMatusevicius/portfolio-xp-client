@@ -48,10 +48,11 @@ export function TaskbarMenu(){
             <span className={styles.startMenuTopText}>User</span>
           </div>
           <div className={styles.startMenuMiddle}>
-            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
-            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
-            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
-            <TaskbarMenuShortcut windowName='my_documents' text='My documents' />
+            <TaskbarMenuShortcut windowName='about' text='About' />
+            <TaskbarMenuShortcut windowName='personal_projects' text='Personal projects' />
+            <TaskbarMenuShortcut windowName='minesweeper' text='Minesweeper' />
+            <TaskbarMenuShortcut windowName='media_player' text='Media player' />
+            <TaskbarMenuShortcut windowName='email' text='Email' />
           </div>
           <div className={styles.startMenuBottom}>
             <div className='flex items-center justify-center m-2 font-xp'>

@@ -28,8 +28,8 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   const [windowIsMaximized, setWindowIsMaximized] = useState<boolean>(false);
   const [oldWindowPosAfterMaximize, setOldWinPosAfterMaximize] = useState({ x: 0, y: 0});
   const [windowPosition, setWindowPosition] = useState({ 
-    x: 300 + (Math.random()*100),
-    y: 200 + (Math.random()*50)
+    x: 100 + (Math.random()*100),
+    y: 100 + (Math.random()*50)
   });
   const [visitedWindowNestedRoutes, setNestedRoutes] = useState<string[]>([]);
   const [currentRoute, setCurrentRoute] = useState<string>('');

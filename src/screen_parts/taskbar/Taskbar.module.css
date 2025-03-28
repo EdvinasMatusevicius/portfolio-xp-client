@@ -160,18 +160,6 @@
   box-shadow: inset -1px 0px rgba(0, 0, 0, 0.3),
     inset 1px 1px 1px rgba(255, 255, 255, 0.2);
 }
-/* .footer__icon {
-  height: 15px;
-  width: 15px;
-}
-.footer__text {
-  position: absolute;
-  left: 27px;
-  right: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
 .taskbar_button.unfocused:hover {
   background-color: #53a3ff;
   box-shadow: inset -1px 0px rgba(0, 0, 0, 0.3),
@@ -235,6 +223,7 @@
   font-size: 11px;
 }
 .taskbar_menu_shortcut{
+  padding: 0.2rem;
   color: black;
   font-family: Tahoma;
   display: flex;

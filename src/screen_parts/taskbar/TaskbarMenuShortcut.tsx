@@ -26,7 +26,7 @@ export function TaskbarMenuShortcut({windowName, text}: {windowName: string, tex
     onClick={onClickHandler}
     className={styles.taskbar_menu_shortcut}
   >
-    <img src={image} alt="" />
+    <img src={image} alt="" style={{maxWidth: '2rem', marginRight: '1rem'}}/>
     <span>{text}</span>
   </div>
 }
