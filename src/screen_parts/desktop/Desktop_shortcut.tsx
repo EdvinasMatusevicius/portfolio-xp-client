@@ -15,7 +15,6 @@ export function DesktopShortcut(
   {allowDrop, drag, drop, shortcutName, shortcutText, elementId}: DesktopShortcutProps
 ): JSX.Element{
   const dispatch = useDispatch<AppDispatch>();
-
   function onDoubleClickHandler(e: React.MouseEvent<HTMLElement>) {
     if (e.detail !== 2) return;
     if (shortcutName === null) return;
@@ -32,8 +31,6 @@ export function DesktopShortcut(
     const response = await import(`../../assets/images/icons/${shortcutName}.png`)
     setImage(response.default)
   }
-
-
 
   if (shortcutName)
     return <div

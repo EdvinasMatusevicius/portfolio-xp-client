@@ -45,6 +45,38 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   }, [currentWindowData]);
   
 
+  const useTouchDrag = (event: React.TouchEvent<HTMLElement>) => {
+    if (!windowNode.current || windowIsMaximized) return;
+
+    const rect = (windowNode.current as Element)?.getBoundingClientRect();
+    if (!rect) return;
+
+    const touch = event.touches[0];
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    dispatch(bringWindowToFront(windowName));
+    document.addEventListener('touchmove', handleTouchMove, { passive: false }); // Passive false is needed for preventDefault if you want to stop scrolling
+    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener('touchcancel', handleTouchEnd);
+  
+  
+  
+    function handleTouchMove(event: TouchEvent) {
+      const touch = event.touches[0];
+      setWindowPosition({
+        x: touch.clientX - offsetX,
+        y: touch.clientY - offsetY,
+      });
+    }
+
+    function handleTouchEnd() {
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('touchcancel', handleTouchEnd);
+    }
+  };
+
+
   const handleDragStart = (event: React.MouseEvent) => {
     if (!windowNode.current || windowIsMaximized) return;
     const rect = (windowNode.current as Element)?.getBoundingClientRect(); 
@@ -66,6 +98,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       document.removeEventListener('mouseup', handleMouseUp);
     }
   };
+
   function handleCloseWindow(event: React.MouseEvent<HTMLButtonElement>){
     if (event.button !== 0) return;
     dispatch(closeWindow(windowName));
@@ -109,7 +142,12 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       ...(isMinimized ? {display: 'none'} : {})
     }}
   >
-      <div style={{ height: '1.6rem', userSelect: 'none' }} className="title-bar" onMouseDown={handleDragStart}>
+      <div 
+        style={{ height: '1.6rem', userSelect: 'none' }}
+        className="title-bar"
+        onMouseDown={handleDragStart}
+        onTouchStart={useTouchDrag}
+      >
         <div 
           className="text-white ml-1"
         >{windowsData[currentRoute]?.text}</div>
