@@ -40,8 +40,17 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
     const currentWinRoute = nestedRoutesHistory[nestedRoutesHistory.length - 1];
     setNestedRoutes(nestedRoutesHistory);
     setCurrentRoute(currentWinRoute);
-    if (!windowIsMaximized)
-      setWindowDimensions(windowsData[currentWinRoute].windowDimensions)
+    if (!windowIsMaximized) {
+      const defaultWidth = windowsData[currentWinRoute]?.windowDimensions?.width ?? 0;
+      const defaultHeight = windowsData[currentWinRoute]?.windowDimensions?.height ?? 0;
+      const windowDimensions: DesktopDimensionsData = {
+        width: Math.min(window.innerWidth, defaultWidth),
+        height: Math.min(window.innerHeight, defaultHeight)
+      }
+      if (defaultWidth > window.innerWidth) setWindowPosition(prevPos=>({...prevPos, x: 0}));
+      if (defaultHeight > window.innerHeight) setWindowPosition(prevPos=>({...prevPos, y: 0}));
+      setWindowDimensions(windowDimensions)
+    }
   }, [currentWindowData]);
   
 

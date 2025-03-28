@@ -54,7 +54,8 @@ export function DesktopShortcut(
         alt=""
         style={{
           width: '40%',
-          height: '40%'
+          height: '40%',
+          objectFit: 'contain'
         }}
         />
         <div>{shortcutText}</div>
