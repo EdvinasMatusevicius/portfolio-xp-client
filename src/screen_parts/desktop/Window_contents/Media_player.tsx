@@ -44,9 +44,9 @@ export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): 
     
     async function fetchStation(){
         try {
-            const apiUrl = import.meta.env.VITE_API_URL;
-            const response = await fetch(`${apiUrl}/mediaPlayer`);
-            // const response = await fetch('http://localhost:8080/mediaPlayer');
+            // const apiUrl = import.meta.env.VITE_API_URL;
+            // const response = await fetch(`${apiUrl}/mediaPlayer`);
+            const response = await fetch('http://localhost:8080/mediaPlayer');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
