@@ -44,7 +44,7 @@ export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): 
     
     async function fetchStation(){
         try {
-            const apiUrl = process.env.REACT_APP_API_URL;
+            const apiUrl = import.meta.env.VITE_API_URL;
             const response = await fetch(`${apiUrl}/mediaPlayer`);
             // const response = await fetch('http://localhost:8080/mediaPlayer');
             if (!response.ok) {

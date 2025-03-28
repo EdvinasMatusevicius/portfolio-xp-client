@@ -31,7 +31,7 @@ export function MineSweeper(): JSX.Element {
   const [minesCount, setGridMinesCount] = useState<number>(1);
   const [timeOnFirstTileClick, setTimeOnFirstTileClick] = useState<number|null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [timerInterval, setTimerInterval] = useState<number>(0);
+  const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout>();
   
   useEffect(()=>{
     selectGameDifficulty(currentDifficulty);
