@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import screenReducer from './screen/screenSlice';
+import mediaPlayerReducer from './media_player/screenSlice';
 
 export const store = configureStore({
   reducer: {
-    screen: screenReducer
+    screen: screenReducer,
+    mediaPlayer: mediaPlayerReducer
   }
 });
 

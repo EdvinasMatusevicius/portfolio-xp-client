@@ -25,4 +25,7 @@ export interface Station {
     geoLat: number | null;
     geoLong: number | null;
     tags: string[];
+};
+export interface MediaPlayerState {
+    radioStationsArr: Station[]
 }

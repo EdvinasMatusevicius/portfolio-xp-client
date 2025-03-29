@@ -11,15 +11,24 @@ import { TrackSelectBtn } from './Media_player/Track_select_btn';
 import { Station } from '../../../types';
 import { AudioPlayer } from './Media_player/Audio_player';
 import { VolumeSlider } from './Media_player/Volume_slider';
+import { useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../../state/store";
+import { useDispatch } from "react-redux";
+import { updateRadioStationsList } from "../../../state/media_player/screenSlice";
+
+
 
 
 export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): JSX.Element {
-    const [stations, setStations] = useState<Station[] | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+    // const [stations, setStations] = useState<Station[] | null>(null);
     const [currentStation, setCurrentStation] = useState<number>(0);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const [stationFetchInProgress, setStationFetchInProgress] = useState<boolean>(false);
     const [volume, setVolume] = useState<number>(0.5);
     const [isMuted, setIsMuted] = useState<boolean>(false);
     const [highlightedTrackIndex, setHighlightedTrackIndex] = useState<number|null>(null);
+    const stations = useSelector((state: RootState) => state.mediaPlayer.radioStationsArr);
 
     function onPlayPausePress() {
         setIsPlaying(!isPlaying);
@@ -44,19 +53,20 @@ export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): 
     
     async function fetchStation(){
         try {
-            const apiUrl = import.meta.env.VITE_API_URL;
+            if (stations.length > 0 || stationFetchInProgress) return;
+            setStationFetchInProgress(true);
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
             const response = await fetch(`${apiUrl}/mediaPlayer`);
-            // const response = await fetch('http://localhost:8080/mediaPlayer');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data: Station[] = await response.json();
-            setStations(data);
+            dispatch(updateRadioStationsList(data));
             setCurrentStation(0);
         } catch (error: unknown) {
             console.error("Fetch error:", error);
-            setStations(null);
         }
+        setStationFetchInProgress(false);
     };
     useEffect(() => {
         fetchStation();

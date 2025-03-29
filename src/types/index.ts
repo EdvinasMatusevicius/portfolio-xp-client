@@ -18,5 +18,6 @@ export type {
 } from './minesweeper.interface'
 
 export type {
-  Station
+  Station,
+  MediaPlayerState
 } from './mediaPlayer.interface'
