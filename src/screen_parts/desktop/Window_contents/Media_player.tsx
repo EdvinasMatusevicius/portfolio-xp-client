@@ -54,7 +54,6 @@ export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): 
     async function fetchStation(){
         try {
             if (stations.length > 0 || stationFetchInProgress) return;
-            console.log('FETCHING')
             setStationFetchInProgress(true);
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
             const response = await fetch(`${apiUrl}/mediaPlayer`);
