@@ -19,8 +19,7 @@ export function Email(): JSX.Element {
   }
   async function sendEmailFeedback() {
     if (!inputsAreValid()) return;
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-    fetch(`${apiUrl}/feedback/post`, {
+    fetch(`api/feedback/post`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
