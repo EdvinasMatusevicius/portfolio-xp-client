@@ -45,6 +45,7 @@ export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): 
     function onTrackDoubleClick(trackIndex: number) {
         setHighlightedTrackIndex(null);
         setCurrentStation(trackIndex);
+        if (!isPlaying) setIsPlaying(true);
     }
 
     function setNewVolume(volVal: number) {
