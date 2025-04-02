@@ -5,5 +5,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-EXPOSE 5173
-CMD [ "npm", "run", "preview" ]
+FROM nginx:stable-alpine
+COPY --from=0 /usr/portfolioXP/dist /usr/share/nginx/html
+EXPOSE 80
