@@ -37,7 +37,9 @@ interface TileProps{
   onTitleClickRelease: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void,
   onTitleClickPress: (event: React.MouseEvent<HTMLDivElement> , tileData: TileData, index: number) => void,
   onTileLeave: () => void,
-  onTileEnter: (index: number) => void
+  onTileEnter: (index: number) => void,
+  onLongTouchEvent: (tileData: TileData, index: number) => void,
+  pressEventActTime: number
 }
 
 export function Tile({
@@ -48,10 +50,12 @@ export function Tile({
   onTitleClickRelease,
   onTitleClickPress,
   onTileLeave,
-  onTileEnter
+  onTileEnter,
+  onLongTouchEvent,
+  pressEventActTime
 }: TileProps): JSX.Element {
   const [tileImg, setTileImg] = useState<string>();
-  
+  const [touchTimerInstance, setTouchTimerInstance] = useState<NodeJS.Timeout | null>(null);
   useEffect(()=>{
     let tileImg;
     if (tileData.hidden) {
@@ -69,6 +73,20 @@ export function Tile({
     }
     setTileImg(tileImg)
   }, [tileData, isPressed, roundFinished]);
+
+  function onTouchStart() {
+    const timerId = setTimeout(() => {
+      onLongTouchEvent(tileData, index)
+      setTouchTimerInstance(null);
+    }, pressEventActTime);
+    setTouchTimerInstance(timerId);
+  }
+  function onTouchEnd() {
+    if (touchTimerInstance) {
+      clearTimeout(touchTimerInstance);
+      setTouchTimerInstance(null);
+    }
+  }
   
   return <div 
     style={{userSelect: 'none'}}
@@ -78,6 +96,8 @@ export function Tile({
     onMouseEnter={()=>onTileEnter(index)}
     onMouseLeave={()=>onTileLeave()}
     onContextMenu={(e)=>e.preventDefault()} //prevents right click menu from opening 
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
   >
     <img style={{pointerEvents: 'none'}} className="w-full h-full" src={tileImg} alt="My Logo" />
   </div>

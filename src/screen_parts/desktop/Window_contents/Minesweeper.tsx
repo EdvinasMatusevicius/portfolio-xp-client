@@ -80,6 +80,10 @@ export function MineSweeper(): JSX.Element {
       if (tileData.hidden) return showTile(index);
     }
   }
+  function onLongTouchEvent(tileData: TileData , index: number) {
+    if (roundFinished) return;
+    if (tileData.hidden) return markTile(index);
+  }
   function onTileClickPress(event: React.MouseEvent<HTMLDivElement>, tileData: TileData, index: number) {
     if (roundFinished) return;
     // if (tileData.hidden && event.button === 2) return setRightButtonIsPressed(true);
@@ -203,7 +207,9 @@ export function MineSweeper(): JSX.Element {
               onTitleClickPress={onTileClickPress}
               onTileEnter={onTileEnter}
               onTileLeave={onTileLeave}
+              onLongTouchEvent={onLongTouchEvent}
               isPressed={leftButtonIsPressed && mouseHoverOnTileIndex === parseInt(key)}
+              pressEventActTime={100}
             />
           })}
         </div>
