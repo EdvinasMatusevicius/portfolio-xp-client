@@ -74,7 +74,8 @@ export function Tile({
     setTileImg(tileImg)
   }, [tileData, isPressed, roundFinished]);
 
-  function onTouchStart() {
+  function onTouchStart(e) {
+    e.preventDefault();
     console.log('TOUCH PRADETI')
     const timerId = setTimeout(() => {
       onLongTouchEvent(tileData, index);
@@ -98,9 +99,9 @@ export function Tile({
     onMouseUp={(e)=>onTitleClickRelease(e, tileData, index)}
     onMouseEnter={()=>onTileEnter(index)}
     onMouseLeave={()=>onTileLeave()}
+    onTouchStart={(e)=>onTouchStart(e)}
+    onTouchEnd={()=>onTouchEnd()}
     onContextMenu={(e)=>e.preventDefault()} //prevents right click menu from opening 
-    onTouchStart={onTouchStart}
-    onTouchEnd={onTouchEnd}
   >
     <img style={{pointerEvents: 'none'}} className="w-full h-full" src={tileImg} alt="My Logo" />
   </div>
