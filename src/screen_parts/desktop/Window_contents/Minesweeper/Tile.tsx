@@ -74,18 +74,14 @@ export function Tile({
     setTileImg(tileImg)
   }, [tileData, isPressed, roundFinished]);
 
-  function onTouchStart(e: React.TouchEvent) {
-    e.preventDefault();
-    console.log('TOUCH PRADETI')
+  function onTouchStart() {
     const timerId = setTimeout(() => {
-      onLongTouchEvent(tileData, index);
-      console.log('TOUCH ZYMETI')
+      onLongTouchEvent(tileData, index)
       setTouchTimerInstance(null);
     }, pressEventActTime);
     setTouchTimerInstance(timerId);
   }
   function onTouchEnd() {
-    console.log('TOUCH ISJUNGTI')
     if (touchTimerInstance) {
       clearTimeout(touchTimerInstance);
       setTouchTimerInstance(null);
@@ -99,9 +95,9 @@ export function Tile({
     onMouseUp={(e)=>onTitleClickRelease(e, tileData, index)}
     onMouseEnter={()=>onTileEnter(index)}
     onMouseLeave={()=>onTileLeave()}
-    onTouchStart={(e)=>onTouchStart(e)}
-    onTouchEnd={()=>onTouchEnd()}
     onContextMenu={(e)=>e.preventDefault()} //prevents right click menu from opening 
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
   >
     <img style={{pointerEvents: 'none'}} className="w-full h-full" src={tileImg} alt="My Logo" />
   </div>

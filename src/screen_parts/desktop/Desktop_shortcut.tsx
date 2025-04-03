@@ -32,6 +32,10 @@ export function DesktopShortcut(
     setImage(response.default)
   }
 
+  function onTouchStart() {
+    console.log('SHORTCUT HAVE BEEN PRESSED')
+  }
+
   if (shortcutName)
     return <div
       id={`${elementId}`}
@@ -40,6 +44,7 @@ export function DesktopShortcut(
       onDragOver={allowDrop}
       onDrop={drop}
       onDoubleClick={onDoubleClickHandler}
+      onTouchStart={()=>onTouchStart()}
       style={{
         display: "flex",
         justifyContent: "center",
