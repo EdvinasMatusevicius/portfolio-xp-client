@@ -14,7 +14,7 @@ export function Screen() {
     setText(JSON.stringify(Math.random()))
   }
   return <div 
-    style={{ height: '100vh', width: '100vw', backgroundColor: color ? 'green' : 'black'}}
+    style={{ height: '100vh', width: '100vw', backgroundColor: color ? 'red' : 'blue'}}
     onTouchStart={()=>onTouchStart()}
     onTouchEnd={()=>onTouchEnd()}
   ><b className="m-5 text-white">{text}</b></div>
