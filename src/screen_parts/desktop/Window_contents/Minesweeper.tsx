@@ -209,7 +209,7 @@ export function MineSweeper(): JSX.Element {
               onTileLeave={onTileLeave}
               onLongTouchEvent={onLongTouchEvent}
               isPressed={leftButtonIsPressed && mouseHoverOnTileIndex === parseInt(key)}
-              pressEventActTime={500}
+              pressEventActTime={250}
             />
           })}
         </div>

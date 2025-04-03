@@ -55,6 +55,7 @@ export function Tile({
   pressEventActTime
 }: TileProps): JSX.Element {
   const [tileImg, setTileImg] = useState<string>();
+  const [pauseTouchMutation, setPauseTouchMutation] = useState<boolean>(false); //hack to prevent multiple actions by timeout and touchStop
   const [touchTimerInstance, setTouchTimerInstance] = useState<NodeJS.Timeout | null>(null);
   useEffect(()=>{
     let tileImg;
@@ -74,14 +75,19 @@ export function Tile({
     setTileImg(tileImg)
   }, [tileData, isPressed, roundFinished]);
 
-  function onTouchStart() {
+  function onTouchStart(e: React.TouchEvent) {
+    e.preventDefault();
+    setPauseTouchMutation(false);
     const timerId = setTimeout(() => {
-      onLongTouchEvent(tileData, index)
+      onLongTouchEvent(tileData, index);
       setTouchTimerInstance(null);
+      setPauseTouchMutation(true);
     }, pressEventActTime);
     setTouchTimerInstance(timerId);
   }
-  function onTouchEnd() {
+  function onTouchEnd(e: React.TouchEvent) {
+    if (pauseTouchMutation) e.preventDefault(); //stops mouse up event from running
+    setPauseTouchMutation(false)
     if (touchTimerInstance) {
       clearTimeout(touchTimerInstance);
       setTouchTimerInstance(null);
@@ -96,8 +102,8 @@ export function Tile({
     onMouseEnter={()=>onTileEnter(index)}
     onMouseLeave={()=>onTileLeave()}
     onContextMenu={(e)=>e.preventDefault()} //prevents right click menu from opening 
-    onTouchStart={onTouchStart}
-    onTouchEnd={onTouchEnd}
+    onTouchStart={(e)=>onTouchStart(e)}
+    onTouchEnd={(e)=>onTouchEnd(e)}
   >
     <img style={{pointerEvents: 'none'}} className="w-full h-full" src={tileImg} alt="My Logo" />
   </div>
