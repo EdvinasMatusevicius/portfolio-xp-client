@@ -74,7 +74,7 @@ export function Tile({
     setTileImg(tileImg)
   }, [tileData, isPressed, roundFinished]);
 
-  function onTouchStart(e) {
+  function onTouchStart(e: React.TouchEvent) {
     e.preventDefault();
     console.log('TOUCH PRADETI')
     const timerId = setTimeout(() => {
