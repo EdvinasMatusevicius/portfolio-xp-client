@@ -75,13 +75,16 @@ export function Tile({
   }, [tileData, isPressed, roundFinished]);
 
   function onTouchStart() {
+    console.log('TOUCH PRADETI')
     const timerId = setTimeout(() => {
-      onLongTouchEvent(tileData, index)
+      onLongTouchEvent(tileData, index);
+      console.log('TOUCH ZYMETI')
       setTouchTimerInstance(null);
     }, pressEventActTime);
     setTouchTimerInstance(timerId);
   }
   function onTouchEnd() {
+    console.log('TOUCH ISJUNGTI')
     if (touchTimerInstance) {
       clearTimeout(touchTimerInstance);
       setTouchTimerInstance(null);
