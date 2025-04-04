@@ -5,7 +5,7 @@ import backgroundImage from './assets/images/xp_background.jpg';
 export function Screen() {
   return <div style={{
     width: '100vw',
-    height: '100vh',
+    height: '100svh',
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     display: 'grid',
