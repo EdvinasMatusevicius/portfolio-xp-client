@@ -1,7 +1,13 @@
 import { CSSProperties } from "react";
 import { ProjectCard } from "./common/Project_Card/Project_card";
+import { WindowDimensions } from "../../../types";
 
-export function RecycleBin({windowIsMaximized}: {windowIsMaximized: boolean}): JSX.Element {
+interface RecycleBinProps {
+  windowIsMaximized: boolean,
+  windowDimensions: WindowDimensions | null
+}
+
+export function RecycleBin({windowIsMaximized, windowDimensions}: RecycleBinProps): JSX.Element {
 
   const projectsWrapperCss = {
     position: 'relative',
@@ -18,7 +24,7 @@ export function RecycleBin({windowIsMaximized}: {windowIsMaximized: boolean}): J
     gridArea: 'projects-column',
     paddingTop: '1rem'
   } as CSSProperties;
-  if (windowIsMaximized) {
+  if (windowIsMaximized && windowDimensions && windowDimensions?.width > 900) {
     projectCardsColumnCss.display = 'grid';
     projectCardsColumnCss.gridTemplateColumns = '1fr 1fr';
     projectCardsColumnCss.gap = '1rem';

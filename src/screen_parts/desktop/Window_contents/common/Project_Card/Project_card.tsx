@@ -14,32 +14,34 @@ export function ProjectCard({projectName}: CardProps): JSX.Element {
 
 
   return <div className={`${styles.project_card_wrapper}`} style={{backgroundColor: projectData.backgroundColor}}>
-    <div className='flex justify-between'>
-      <div className='flex items-end justify-start h-full'>
+    <div className='flex justify-center'>
+      <div className='flex flex-col w-full items-center justify-between sm:flex-row'>
         <b className={`${styles.title} whitespace-nowrap`}>{projectData.title}</b>
-        {projectData.techUsed.map(
-          (techName, i)=>{
-            const imgSrc = techIcons[`/src/assets/images/tech_icons/${techName}.svg`]?.default;
-            return <img src={imgSrc} key={i} style={{maxHeight: '68%', margin: '2px'}}></img>
-          }
-        )}
-      </div>
-      <div className='flex justify-between'>
-        { projectData.gitLinks && projectData.gitLinks?.length > 0 ? (
-          projectData.gitLinks.map(
-            (gitData, i)=>{
-              return <a 
-                href={gitData.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={styles.github_link} key={i}
-              >
-                <img src={githubIcon} alt="github Logo"/>
-                { gitData.text && <span className='whitespace-nowrap'>{gitData.text}</span>}
-              </a>
+        <div className='flex h-full flex items-center'>
+          {projectData.techUsed.map(
+            (techName, i)=>{
+              const imgSrc = techIcons[`/src/assets/images/tech_icons/${techName}.svg`]?.default;
+              return <img src={imgSrc} key={i} className='h-[1.5rem] md:h-[1.8rem] m-[1px] md:m-[2px]'></img>
             }
-          )) : null
-        }
+          )}
+        </div>
+        <div className='flex justify-between'>
+          { projectData.gitLinks && projectData.gitLinks?.length > 0 ? (
+            projectData.gitLinks.map(
+              (gitData, i)=>{
+                return <a 
+                  href={gitData.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={styles.github_link} key={i}
+                >
+                  <img src={githubIcon} alt="github Logo"/>
+                  { gitData.text && <span className='whitespace-nowrap'>{gitData.text}</span>}
+                </a>
+              }
+            )) : null
+          }
+        </div>
       </div>
     </div>
     <div className={`${styles.fade_line} mb-3`}></div>

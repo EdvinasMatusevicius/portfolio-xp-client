@@ -4,7 +4,7 @@ import { bringWindowToFront, closeWindow, minimizeWindow } from '../../state/scr
 import { AppDispatch } from "../../state/store";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
-import { DesktopDimensionsData } from "../../types/index";
+import { DesktopDimensionsData, WindowDimensions } from "../../types/index";
 import { WindowHeader } from "./Window_header";
 import { WindowContent } from "./Window_content";
 import "xp.css/dist/XP.css";
@@ -33,7 +33,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   });
   const [visitedWindowNestedRoutes, setNestedRoutes] = useState<string[]>([]);
   const [currentRoute, setCurrentRoute] = useState<string>('');
-  const [windowDimensions, setWindowDimensions] = useState<null|{width: number, height: number}>(null);
+  const [windowDimensions, setWindowDimensions] = useState<null|WindowDimensions>(null);
 
   useEffect(()=>{
     const nestedRoutesHistory = currentWindowData.nestedRoutesHistory;
@@ -52,7 +52,9 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       setWindowDimensions(windowDimensions)
     }
   }, [currentWindowData]);
-  
+  useEffect(()=>{
+    if (windowIsMaximized) setWindowDimensions(desktopDimensions);
+  }, [desktopDimensions])
 
   const useTouchDrag = (event: React.TouchEvent<HTMLElement>) => {
     if (!windowNode.current || windowIsMaximized) return;
@@ -175,6 +177,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
         windowName={windowName} 
         currentRoute={currentRoute}
         windowIsMaximized={windowIsMaximized}
+        windowDimensions={windowDimensions}
       />
   </div>
 }

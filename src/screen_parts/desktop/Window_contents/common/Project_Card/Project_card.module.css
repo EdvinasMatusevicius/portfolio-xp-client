@@ -3,7 +3,7 @@
   border-radius: 5px;
   width: 100%;
   display: grid;
-  grid-template-rows: 3rem auto 7fr 1fr;
+  grid-template-rows: auto auto 7fr 1fr;
   margin: 0 0 1rem 0;
   padding: 0.5rem;
   user-select: none;
@@ -24,7 +24,7 @@
   height: 1.5rem;
   font-size: 1.2rem;
   color: rgb(255, 255, 255);
-  margin: 0 1rem 0 1rem;
+  margin: 0 1rem 0.5rem 0.6rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 .fade_line {

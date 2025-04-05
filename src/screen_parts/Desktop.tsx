@@ -22,6 +22,18 @@ export function Desktop() {
     const extendedArray = [...shortcuts, ...Array(totalAvailableSquares - shortcuts.length).fill(null)];
     setDesktopDimensions(desktopDimensions);
     setShortcuts(extendedArray);
+
+    const handleOrientationChange = () => {
+      const desktopDimensions = getDesktopDimensions();
+      setDesktopDimensions(desktopDimensions);
+    };
+    window.addEventListener('orientationchange', handleOrientationChange);
+    window.addEventListener('resize', handleOrientationChange);
+
+    return () => {
+      window.removeEventListener('orientationchange', handleOrientationChange);
+      window.removeEventListener('resize', handleOrientationChange);
+    };
   }, []);
 
   function allowDrop(event: React.DragEvent<HTMLDivElement>) {

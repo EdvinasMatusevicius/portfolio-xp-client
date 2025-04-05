@@ -1,12 +1,16 @@
 export interface DesktopDimensionsData {
   width: number, height: number
 }
+export interface WindowDimensions {
+  width: number;
+  height: number;
+}
 export interface WindowLayeringOrderDataObj {
   id: number,
   name: string,
   text: string,
   nestedRoutesHistory: string[]
-  windowDimensions: null | {width: number, height: number}
+  windowDimensions: WindowDimensions | null;
   usesScrollbar: boolean
   isMinimized?: boolean,
   hideWindowHeader?: boolean,

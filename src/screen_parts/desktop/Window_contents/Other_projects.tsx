@@ -1,7 +1,14 @@
 import { CSSProperties } from "react";
 import { ProjectCard } from "./common/Project_Card/Project_card";
+import { WindowDimensions } from "../../../types";
 
-export function OtherProjects({windowIsMaximized}: {windowIsMaximized: boolean}): JSX.Element {
+
+interface OtherProjectsProps {
+  windowIsMaximized: boolean,
+  windowDimensions: WindowDimensions | null
+}
+
+export function OtherProjects({windowIsMaximized, windowDimensions}: OtherProjectsProps): JSX.Element {
 
   const projectsWrapperCss = {
     position: 'relative',
@@ -18,7 +25,7 @@ export function OtherProjects({windowIsMaximized}: {windowIsMaximized: boolean})
     gridArea: 'projects-column',
     paddingTop: '1rem'
   } as CSSProperties;
-  if (windowIsMaximized) {
+  if (windowIsMaximized && windowDimensions && windowDimensions?.width > 900) {
     projectCardsColumnCss.display = 'grid';
     projectCardsColumnCss.gridTemplateColumns = '1fr 1fr';
     projectCardsColumnCss.gap = '1rem';
