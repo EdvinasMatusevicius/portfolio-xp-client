@@ -51,12 +51,10 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
       if (defaultHeight > window.innerHeight) setWindowPosition(prevPos=>({...prevPos, y: 0}));
       setWindowDimensions(windowDimensions)
     }
-  }, [currentWindowData]);
-  useEffect(()=>{
     if (windowIsMaximized) setWindowDimensions(desktopDimensions);
-  }, [desktopDimensions])
+  }, [currentWindowData, desktopDimensions]);
 
-  const useTouchDrag = (event: React.TouchEvent<HTMLElement>) => {
+  function useTouchDrag(event: React.TouchEvent<HTMLElement>) {
     if (!windowNode.current || windowIsMaximized) return;
 
     const rect = (windowNode.current as Element)?.getBoundingClientRect();
@@ -88,7 +86,7 @@ export function DesktopWindow({windowName, zIndexVal, isMinimized, desktopDimens
   };
 
 
-  const handleDragStart = (event: React.MouseEvent) => {
+  function handleDragStart(event: React.MouseEvent) {
     if (!windowNode.current || windowIsMaximized) return;
     const rect = (windowNode.current as Element)?.getBoundingClientRect(); 
     if (!rect) return;
