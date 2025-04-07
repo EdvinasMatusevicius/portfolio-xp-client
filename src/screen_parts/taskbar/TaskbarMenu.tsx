@@ -37,8 +37,7 @@ export function TaskbarMenu(){
       // wrapper because border radius bugged with pos absolute
       <div style={{
         position: 'absolute',
-        width: '400px',
-        height: '400px',
+        width: '350px',
         bottom: '100%'
       }}>
         {/* make grid here */}
@@ -56,11 +55,11 @@ export function TaskbarMenu(){
           </div>
           <div className={styles.startMenuBottom}>
             <div className='flex items-center justify-center m-2 font-xp'>
-              <img src={logOff} alt="logOff" />
+              <img src={logOff} alt="logOff" className='grayscale'/>
               <span className='mx-1'>Log Off</span>
             </div>
             <div className='flex items-center justify-center font-xp'>
-              <img src={turnOff} alt="logOff" />
+              <img src={turnOff} alt="logOff" className='grayscale'/>
               <span className='mx-1'>Turn Off Computer</span>
             </div>
           </div>
