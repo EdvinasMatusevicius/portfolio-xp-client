@@ -10,6 +10,25 @@
   ". . introduction ."
   ". . . linkedin";
 }
+/* activate when width < 500px and height > 401px */
+@media (max-width: 500px) and (min-height: 401px){
+  .about_wrapper {
+    padding: 1rem;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+      ". monitor ."
+      ". introduction ."
+      ". introduction linkedin";
+  }
+}
+/* activate when width > 501px and height < 400px */
+@media (min-width: 501px) and (max-height: 400px) {
+  .about_wrapper {
+    grid-template-columns: 10% 20% 60% 10%;
+    grid-template-rows: 10% 40% 40% 10%;
+  }
+}
 .introduction{
   color: white;
   margin-left: 5%;
