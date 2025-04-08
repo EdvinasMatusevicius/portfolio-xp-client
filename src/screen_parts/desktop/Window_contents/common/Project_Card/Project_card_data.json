@@ -46,7 +46,7 @@
     "title": "gtaRP server",
     "techUsed":["vue","node","mysql"],
     "mediaCarousel": "lmk",
-    "description": "gtaRP server called 'lasives miesto kronikos.'",
+    "description": "gtaRP server called 'laisvės miesto kronikos.'",
     "backgroundColor": "#5f55cb"
   }
 }
