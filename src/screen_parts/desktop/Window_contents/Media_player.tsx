@@ -106,7 +106,7 @@ export function MediaPlayer({windowIsMaximized}: {windowIsMaximized: boolean}): 
                         />
                     ))
                 ) : (
-                    <div>No radio stations found</div>
+                    <div className='text-white'>No radio stations found</div>
                 )}
             </div>
         </div>
