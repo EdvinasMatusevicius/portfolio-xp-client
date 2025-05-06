@@ -19,7 +19,7 @@ export function Clippy() {
       name: 'Clippy',
       selector: '.my-clippy',
       successCb: (agent: Agent) => {
-        agent.show();
+        agent.show(false);
         agent.play('Greeting');
         agent.play('Wave');
         loopInterval = setInterval(() => {
@@ -42,7 +42,7 @@ export function Clippy() {
               agent.play('GestureRight');
               break;
             case 19:
-              agent.hide();
+              agent.hide(false, ()=>false); //needed args, callback is just placeholder
               break;
             case 20:
               clearInterval(loopInterval);
