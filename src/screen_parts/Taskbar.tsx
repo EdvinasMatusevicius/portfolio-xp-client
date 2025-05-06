@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { TaskbarBtn } from "./taskbar/TaskbarBtn";
 import { TaskbarMenu } from "./taskbar/TaskbarMenu";
+import { Clippy } from "./taskbar/Clippy";
 import { useEffect, useState } from 'react';
 
 import soundImg from '../assets/images/icons/soundSmall.png'
@@ -34,6 +35,7 @@ export function Taskbar() {
               <div className={styles.taskbar_time}>
                 {time.toLocaleTimeString('lt', { hour: '2-digit', minute: '2-digit' })}
               </div>
+              <Clippy />
             </div>
           </div>
 }
