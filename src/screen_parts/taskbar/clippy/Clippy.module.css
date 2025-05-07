@@ -1,0 +1,55 @@
+/* Clippy.module.css */
+/* Ensure this file contains the speech bubble styles */
+
+.speech-bubble { /* This will be styles.speechBubble or styles['speech-bubble'] in JS */
+  --bubble-bg: #f7f7c6;
+  --bubble-border-color: #333333;
+  --bubble-border-width: 1px;
+  --bubble-border-radius: 12px;
+  --tail-height: 12px;
+  --tail-base-width: 15px;
+  --bubble-padding: 6px 10px;
+  --bubble-max-width: 300px;
+
+  position: relative;
+  background: var(--bubble-bg);
+  border: var(--bubble-border-width) solid var(--bubble-border-color);
+  border-radius: var(--bubble-border-radius);
+  padding: var(--bubble-padding);
+  width: fit-content;
+  max-width: var(--bubble-max-width);
+  margin-bottom: var(--tail-height);
+  box-sizing: border-box;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* For the tail, CSS Modules will handle these pseudo-elements correctly */
+/* as long as they are associated with a class defined in this module, like .speech-bubble */
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(-1 * (var(--tail-height) + var(--bubble-border-width)));
+  border-left: calc(var(--tail-base-width) / 2) solid transparent;
+  border-right: calc(var(--tail-base-width) / 2) solid transparent;
+  border-top: var(--tail-height) solid var(--bubble-border-color);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(-1 * (var(--tail-height) - var(--bubble-border-width)));
+  border-left: calc(var(--tail-base-width) / 2 - var(--bubble-border-width)) solid transparent;
+  border-right: calc(var(--tail-base-width) / 2 - var(--bubble-border-width)) solid transparent;
+  border-top: calc(var(--tail-height) - var(--bubble-border-width)) solid var(--bubble-bg);
+}
